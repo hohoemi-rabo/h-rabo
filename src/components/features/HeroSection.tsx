@@ -3,6 +3,14 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui'
 import Container from '@/components/ui/Container'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+
+// 3Dコンポーネントを動的インポート（パフォーマンス最適化）
+const HeroObject = dynamic(() => import('@/components/3d/HeroObject'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />
+})
 
 export default function HeroSection() {
   return (
@@ -10,20 +18,13 @@ export default function HeroSection() {
       {/* 背景グラデーション */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900" />
 
-      {/* サイバーグリッド */}
-      <div className="cyber-grid absolute inset-0 opacity-30" />
+      {/* サイバーグリッド背景（薄く） */}
+      <div className="cyber-grid absolute inset-0 opacity-10" />
 
-      {/* 装飾的なライトエフェクト */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-radial from-neon-blue/10 via-transparent to-transparent opacity-50" />
-        <div className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-gradient-radial from-neon-purple/10 via-transparent to-transparent opacity-50" />
-      </div>
-
-      {/* パーティクル効果コンテナ（将来のThree.js用） */}
-      <div className="absolute inset-0" id="particles-container" />
-
-      <Container>
-        <div className="relative z-10 text-center space-y-8 sm:space-y-12">
+      <Container size="xl">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-20">
+          {/* 左側：テキストコンテンツ */}
+          <div className="text-center lg:text-left space-y-8 sm:space-y-12">
           {/* メインタイトル */}
           <div className="space-y-4 sm:space-y-6">
             <motion.h1
@@ -32,18 +33,18 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
-              <span className="block text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-2 sm:mb-4">
+              <span className="block text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-2 sm:mb-4">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink">
                   パソコン・スマホ
                 </span>
               </span>
-              <span className="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl neon-text animate-glow">
+              <span className="block text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl neon-text animate-glow">
                 ほほ笑みラボ
               </span>
             </motion.h1>
 
             <motion.p
-              className="font-futura text-xl xs:text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-300 px-4"
+              className="font-futura text-lg xs:text-xl sm:text-2xl md:text-3xl font-semibold text-gray-300 px-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
@@ -53,7 +54,7 @@ export default function HeroSection() {
             </motion.p>
 
             <motion.p
-              className="text-base xs:text-lg sm:text-xl lg:text-2xl text-gray-400 max-w-3xl mx-auto px-4 leading-relaxed"
+              className="text-xs xs:text-sm sm:text-base lg:text-lg text-gray-400 max-w-3xl mx-auto px-4 leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
@@ -64,48 +65,59 @@ export default function HeroSection() {
             </motion.p>
           </div>
 
-          {/* CTAボタン */}
-          <motion.div
-            className="flex flex-col xs:flex-row gap-4 sm:gap-6 justify-center px-4 max-w-md xs:max-w-none mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: 'easeOut' }}
-          >
-            <Button 
-              variant="primary" 
-              size="lg" 
-              className="animate-pulse hover:animate-none text-lg px-8 py-4"
-            >
-              無料体験申し込み
-            </Button>
-            <Button 
-              variant="secondary" 
-              size="lg" 
-              className="text-lg px-8 py-4"
-            >
-              サービス詳細
-            </Button>
-          </motion.div>
-
-          {/* スクロール指示 */}
-          <motion.div
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
-          >
+            {/* CTAボタン */}
             <motion.div
-              className="flex flex-col items-center space-y-2 text-gray-400"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+              className="flex flex-col xs:flex-row gap-4 sm:gap-6 justify-center lg:justify-start px-4 lg:px-0 max-w-md xs:max-w-none mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9, ease: 'easeOut' }}
             >
-              <span className="text-sm font-futura">SCROLL</span>
-              <div className="w-6 h-10 border-2 border-neon-blue/50 rounded-full flex justify-center">
-                <div className="w-1 h-3 bg-neon-blue rounded-full mt-2 animate-bounce" />
-              </div>
+              <Button 
+                variant="primary" 
+                size="lg" 
+                className="animate-pulse hover:animate-none text-lg px-8 py-4"
+              >
+                無料体験申し込み
+              </Button>
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                className="text-lg px-8 py-4"
+              >
+                サービス詳細
+              </Button>
             </motion.div>
-          </motion.div>
+          </div>
+
+          {/* 右側：3Dオブジェクト */}
+          <div className="relative h-[400px] lg:h-[600px] hidden lg:block">
+            <Suspense fallback={<div className="w-full h-full flex items-center justify-center">
+              <div className="w-8 h-8 border-2 border-neon-blue border-t-transparent rounded-full animate-spin" />
+            </div>}>
+              <HeroObject className="w-full h-full" />
+            </Suspense>
+          </div>
+
         </div>
+
+        {/* スクロール指示（グリッドの外に配置） */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
+        >
+          <motion.div
+            className="flex flex-col items-center space-y-2 text-gray-400"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+          >
+            <span className="text-sm font-futura">SCROLL</span>
+            <div className="w-6 h-10 border-2 border-neon-blue/50 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-neon-blue rounded-full mt-2 animate-bounce" />
+            </div>
+          </motion.div>
+        </motion.div>
       </Container>
 
       {/* 浮遊する装飾要素 */}
