@@ -1,76 +1,110 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
-import Navigation from '@/components/ui/Navigation'
-import { cn } from '@/lib/utils'
+import NavItem from '@/components/ui/NavItem'
+import CTAButton from '@/components/ui/CTAButton'
+import HamburgerButton from '@/components/ui/HamburgerButton'
+import MobileMenu from '@/components/ui/MobileMenu'
+
+const menuItems = [
+  { href: '/', label: 'ホーム' },
+  { href: '/about', label: '講師紹介' },
+  { href: '/services', label: 'サービス' },
+  { href: '/blog', label: 'ブログ' },
+  { href: '/faq', label: 'よくある質問' },
+]
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <Container>
-        <div className="flex h-16 items-center justify-between">
-          {/* ロゴ */}
-          <Link 
-            href="/" 
-            className="flex items-center space-x-2"
-            onClick={closeMobileMenu}
-          >
-            <div className="text-lg sm:text-xl font-bold text-blue-600">
-              ほほ笑みラボ
+    <>
+      <motion.header
+        className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+          isScrolled
+            ? 'bg-dark-900/95 border-b border-neon-blue/30 backdrop-blur-md shadow-cyber'
+            : 'bg-transparent'
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 100 }}
+      >
+        {/* サイバーグリッド背景 */}
+        <div className="cyber-grid absolute inset-0 opacity-20 pointer-events-none" />
+        
+        {/* グラデーション装飾 */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-blue/5 to-transparent pointer-events-none" />
+
+        <Container>
+          <nav className="relative py-4">
+            <div className="flex items-center justify-between">
+              {/* ロゴ */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link 
+                  href="/" 
+                  className="flex items-center space-x-2"
+                  onClick={closeMobileMenu}
+                >
+                  <div className="font-cyber text-xl sm:text-2xl font-bold neon-text">
+                    ほほ笑みラボ
+                  </div>
+                  <div className="hidden xs:block text-xs sm:text-sm text-gray-300">
+                    パソコン・スマホ
+                  </div>
+                </Link>
+              </motion.div>
+
+              {/* デスクトップナビゲーション */}
+              <div className="hidden md:flex items-center space-x-8">
+                {menuItems.map((item) => (
+                  <NavItem
+                    key={item.href}
+                    href={item.href}
+                    label={item.label}
+                    isActive={pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))}
+                  />
+                ))}
+                <CTAButton />
+              </div>
+
+              {/* モバイルハンバーガーメニュー */}
+              <HamburgerButton
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
             </div>
-            <div className="hidden xs:block text-xs sm:text-sm text-gray-600">
-              パソコン・スマホ
-            </div>
-          </Link>
+          </nav>
+        </Container>
+      </motion.header>
 
-          {/* デスクトップナビゲーション */}
-          <Navigation className="hidden md:block" />
-
-          {/* モバイルハンバーガーメニュー */}
-          <button
-            onClick={toggleMobileMenu}
-            className="md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1"
-            aria-label="メニューを開く"
-          >
-            <div className={cn(
-              'w-6 h-0.5 bg-gray-600 transition-all duration-300',
-              isMobileMenuOpen && 'rotate-45 translate-y-1.5'
-            )} />
-            <div className={cn(
-              'w-6 h-0.5 bg-gray-600 transition-all duration-300',
-              isMobileMenuOpen && 'opacity-0'
-            )} />
-            <div className={cn(
-              'w-6 h-0.5 bg-gray-600 transition-all duration-300',
-              isMobileMenuOpen && '-rotate-45 -translate-y-1.5'
-            )} />
-          </button>
-        </div>
-
-        {/* モバイルメニュー */}
-        <div className={cn(
-          'md:hidden transition-all duration-300 ease-in-out overflow-hidden',
-          isMobileMenuOpen ? 'max-h-64 pb-4' : 'max-h-0'
-        )}>
-          <Navigation 
-            isMobile={true} 
-            onItemClick={closeMobileMenu}
-            className="pt-4 border-t border-gray-100"
-          />
-        </div>
-      </Container>
-    </header>
+      {/* モバイルメニュー */}
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={closeMobileMenu}
+        activeHref={pathname}
+      />
+    </>
   )
 }
