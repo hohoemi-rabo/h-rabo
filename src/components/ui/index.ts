@@ -44,5 +44,15 @@ export type { HamburgerButtonProps } from './HamburgerButton'
 export { default as MobileMenu } from './MobileMenu'
 export type { MobileMenuProps } from './MobileMenu'
 
+// Footer Components
+export { default as ContactItem } from './ContactItem'
+export type { ContactItemProps } from './ContactItem'
+
+export { default as FooterLink } from './FooterLink'
+export type { FooterLinkProps } from './FooterLink'
+
+export { default as SocialIcon } from './SocialIcon'
+export type { SocialIconProps } from './SocialIcon'
+
 // Re-export design tokens for easy access
 export { default as designTokens } from '@/lib/design-tokens'

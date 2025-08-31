@@ -1,85 +1,233 @@
-import Link from 'next/link'
+'use client'
+
+import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
+import ContactItem from '@/components/ui/ContactItem'
+import FooterLink from '@/components/ui/FooterLink'
+import SocialIcon from '@/components/ui/SocialIcon'
+
+const serviceLinks = [
+  'シニア向けレッスン',
+  'ビジネスパーソン向け',
+  '単発利用サービス',
+  '出張サポート',
+]
+
+const siteLinks = [
+  { text: '講師紹介', href: '/about' },
+  { text: 'ブログ', href: '/blog' },
+  { text: 'よくある質問', href: '/faq' },
+  { text: 'お問い合わせ', href: '/contact' },
+]
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="relative bg-dark-900 border-t border-neon-blue/30 overflow-hidden">
+      {/* 背景エフェクト */}
+      <div className="cyber-grid absolute inset-0 opacity-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-800 to-dark-900" />
+      
+      {/* 上部グラデーションライン */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-blue to-transparent opacity-70" />
+
       <Container>
-        <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="relative py-12 lg:py-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* 会社情報 */}
-            <div>
-              <h3 className="text-lg font-bold mb-4">パソコン・スマホ ほほ笑みラボ</h3>
-              <p className="text-gray-300 mb-4">ゆっくり、何度でも教えます！</p>
-              <div className="text-sm text-gray-400 space-y-2">
-                <p>〒395-0002</p>
-                <p>長野県飯田市上郷飯沼2640-1</p>
-                <p>TEL: 090-5646-5670</p>
+            <motion.div 
+              className="space-y-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div>
+                <motion.h3
+                  className="font-cyber text-2xl font-bold neon-text mb-3"
+                  whileHover={{ 
+                    textShadow: '0 0 20px #00d4ff',
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  ほほ笑みラボ
+                </motion.h3>
+                <p className="font-futura text-sm text-gray-300 leading-relaxed">
+                  ゆっくり、何度でも教えます！
+                </p>
               </div>
-            </div>
 
-            {/* サイトリンク */}
-            <div>
-              <h3 className="text-lg font-bold mb-4">サイトマップ</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <Link href="/" className="hover:text-white transition-colors">
-                    ホーム
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="hover:text-white transition-colors">
-                    講師紹介
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/services" className="hover:text-white transition-colors">
-                    サービス
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="hover:text-white transition-colors">
-                    ブログ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/faq" className="hover:text-white transition-colors">
-                    よくある質問
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="hover:text-white transition-colors">
-                    お問い合わせ
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* その他の情報 */}
-            <div>
-              <h3 className="text-lg font-bold mb-4">その他</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <Link href="/privacy" className="hover:text-white transition-colors">
-                    プライバシーポリシー
-                  </Link>
-                </li>
-              </ul>
-              <div className="mt-6 text-sm text-gray-400">
-                <p>営業時間: 平日 9:00-17:00</p>
-                <p>（土日・祝日はお休み）</p>
+              <div className="space-y-3">
+                <ContactItem 
+                  icon="location" 
+                  text="〒395-0002 長野県飯田市上郷飯沼2640-1" 
+                />
+                <ContactItem 
+                  icon="phone" 
+                  text="090-5646-5670" 
+                />
+                <ContactItem 
+                  icon="email" 
+                  text="お問い合わせは随時対応" 
+                />
               </div>
-            </div>
+            </motion.div>
+
+            {/* サービス */}
+            <motion.div 
+              className="space-y-4"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h3 className="font-cyber text-neon-purple text-lg font-semibold">
+                サービス
+              </h3>
+              <ul className="space-y-3">
+                {serviceLinks.map((item, index) => (
+                  <motion.li 
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
+                  >
+                    <FooterLink text={item} href="/services" />
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* サイト情報 */}
+            <motion.div 
+              className="space-y-4"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h3 className="font-cyber text-neon-green text-lg font-semibold">
+                サイト情報
+              </h3>
+              <ul className="space-y-3">
+                {siteLinks.map((item, index) => (
+                  <motion.li 
+                    key={item.text}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + (index * 0.1) }}
+                  >
+                    <FooterLink text={item.text} href={item.href} />
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* 外部リンク・SNS */}
+            <motion.div 
+              className="space-y-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h3 className="font-cyber text-neon-pink text-lg font-semibold">
+                つながる
+              </h3>
+
+              {/* ソーシャルアイコン */}
+              <div className="flex space-x-4">
+                <SocialIcon 
+                  icon="network" 
+                  href="#" 
+                  color="neon-blue"
+                  label="Twitter" 
+                />
+                <SocialIcon 
+                  icon="shield" 
+                  href="#" 
+                  color="neon-purple"
+                  label="Facebook" 
+                />
+                <SocialIcon 
+                  icon="cpu" 
+                  href="#" 
+                  color="neon-pink"
+                  label="Instagram" 
+                />
+              </div>
+
+              <div className="space-y-3">
+                <FooterLink 
+                  text="講師ポートフォリオ" 
+                  href="https://example-portfolio.com" 
+                  external 
+                />
+                <div className="bg-dark-700/30 rounded-lg p-3 border border-dark-600">
+                  <p className="font-futura text-xs text-gray-400">
+                    営業時間: 平日 9:00-17:00
+                    <br />
+                    （土日・祝日はお休み）
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* コピーライト */}
-        <div className="border-t border-gray-800 py-6">
-          <div className="text-center text-sm text-gray-400">
-            <p>&copy; {new Date().getFullYear()} パソコン・スマホ ほほ笑みラボ. All rights reserved.</p>
+        {/* 下部コピーライト */}
+        <motion.div 
+          className="relative border-t border-dark-700 py-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+            <p className="font-futura text-sm text-gray-400">
+              &copy; {new Date().getFullYear()} パソコン・スマホ ほほ笑みラボ. All rights reserved.
+            </p>
+
+            <div className="flex space-x-6">
+              <FooterLink
+                text="プライバシーポリシー"
+                href="/privacy"
+                className="text-xs hover:text-neon-blue"
+              />
+              <motion.div
+                className="text-xs text-gray-500"
+                whileHover={{ color: '#00d4ff' }}
+              >
+                Made with 💙 and ⚡
+              </motion.div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </Container>
+
+      {/* 装飾エフェクト */}
+      <motion.div
+        className="absolute bottom-10 left-10 w-2 h-2 bg-neon-cyan rounded-full opacity-60"
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.6, 1, 0.6],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 3,
+          ease: 'easeInOut',
+        }}
+      />
+      <motion.div
+        className="absolute top-20 right-10 w-1 h-1 bg-neon-pink rounded-full opacity-60"
+        animate={{
+          y: [0, -15, 0],
+          opacity: [0.6, 1, 0.6],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 4,
+          ease: 'easeInOut',
+          delay: 1,
+        }}
+      />
+
+      {/* 下部グラデーションライン */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-purple to-transparent opacity-50" />
     </footer>
   )
 }
