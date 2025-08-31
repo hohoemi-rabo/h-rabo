@@ -1,15 +1,19 @@
 # 017: お問い合わせフォーム実装
 
 ## 概要
+
 バリデーション機能付きのお問い合わせフォームとAPI Routeを実装する
 
 ## 優先度
+
 High
 
 ## 前提条件
+
 - 008: UIコンポーネントライブラリ作成が完了していること
 
 ## Todoリスト
+
 - [ ] フォームコンポーネントの作成
   - [ ] 入力フィールドの実装（名前、メール、電話、内容）
   - [ ] バリデーション機能
@@ -36,7 +40,9 @@ High
   - [ ] API動作テスト
 
 ## 実装詳細
+
 ### フォームコンポーネント
+
 ```tsx
 // components/forms/ContactForm.tsx
 import { useState } from 'react'
@@ -49,7 +55,10 @@ import * as z from 'zod'
 const contactSchema = z.object({
   name: z.string().min(2, '名前は2文字以上で入力してください'),
   email: z.string().email('正しいメールアドレスを入力してください'),
-  phone: z.string().regex(/^[0-9-+\s()]*$/, '正しい電話番号を入力してください').optional(),
+  phone: z
+    .string()
+    .regex(/^[0-9-+\s()]*$/, '正しい電話番号を入力してください')
+    .optional(),
   subject: z.string().min(1, '件名を選択してください'),
   message: z.string().min(10, 'お問い合わせ内容は10文字以上で入力してください'),
 })
@@ -59,23 +68,23 @@ type ContactFormData = z.infer<typeof contactSchema>
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-    watch
+    watch,
   } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema)
+    resolver: zodResolver(contactSchema),
   })
-  
+
   const watchedFields = watch()
-  
+
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
     setSubmitStatus('idle')
-    
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -84,7 +93,7 @@ export default function ContactForm() {
         },
         body: JSON.stringify(data),
       })
-      
+
       if (response.ok) {
         setSubmitStatus('success')
         reset()
@@ -97,66 +106,60 @@ export default function ContactForm() {
       setIsSubmitting(false)
     }
   }
-  
+
   const subjects = [
     '体験レッスンについて',
     'グループレッスンについて',
     '個別レッスンについて',
     '単発サービスについて',
-    'その他のお問い合わせ'
+    'その他のお問い合わせ',
   ]
-  
+
   return (
-    <Card className="max-w-2xl mx-auto p-8">
+    <Card className="mx-auto max-w-2xl p-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl font-cyber font-bold text-center mb-8 neon-text">
-          お問い合わせ
-        </h2>
-        
+        <h2 className="font-cyber neon-text mb-8 text-center text-2xl font-bold">お問い合わせ</h2>
+
         {submitStatus === 'success' && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-green-500/10 border border-green-500 rounded-lg p-4 mb-6"
+            className="mb-6 rounded-lg border border-green-500 bg-green-500/10 p-4"
           >
-            <p className="text-green-400 text-center">
+            <p className="text-center text-green-400">
               お問い合わせありがとうございます。24時間以内にご連絡いたします。
             </p>
           </motion.div>
         )}
-        
+
         {submitStatus === 'error' && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-red-500/10 border border-red-500 rounded-lg p-4 mb-6"
+            className="mb-6 rounded-lg border border-red-500 bg-red-500/10 p-4"
           >
-            <p className="text-red-400 text-center">
+            <p className="text-center text-red-400">
               送信に失敗しました。しばらくしてから再度お試しください。
             </p>
           </motion.div>
         )}
-        
+
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* 名前 */}
           <div>
-            <label className="block text-sm font-futura text-gray-300 mb-2">
+            <label className="font-futura mb-2 block text-sm text-gray-300">
               お名前 <span className="text-red-400">*</span>
             </label>
-            <Input
-              {...register('name')}
-              placeholder="山田 太郎"
-              error={errors.name?.message}
-            />
+            <Input {...register('name')} placeholder="山田 太郎" error={errors.name?.message} />
           </div>
-          
+
           {/* メールアドレス */}
           <div>
-            <label className="block text-sm font-futura text-gray-300 mb-2">
+            <label className="font-futura mb-2 block text-sm text-gray-300">
               メールアドレス <span className="text-red-400">*</span>
             </label>
             <Input
@@ -166,12 +169,10 @@ export default function ContactForm() {
               error={errors.email?.message}
             />
           </div>
-          
+
           {/* 電話番号 */}
           <div>
-            <label className="block text-sm font-futura text-gray-300 mb-2">
-              電話番号（任意）
-            </label>
+            <label className="font-futura mb-2 block text-sm text-gray-300">電話番号（任意）</label>
             <Input
               {...register('phone')}
               type="tel"
@@ -179,60 +180,52 @@ export default function ContactForm() {
               error={errors.phone?.message}
             />
           </div>
-          
+
           {/* 件名 */}
           <div>
-            <label className="block text-sm font-futura text-gray-300 mb-2">
+            <label className="font-futura mb-2 block text-sm text-gray-300">
               お問い合わせ件名 <span className="text-red-400">*</span>
             </label>
             <select
               {...register('subject')}
-              className={`
-                w-full px-4 py-3 bg-dark-800 border rounded-lg
-                font-futura text-white
-                transition-all duration-300 focus:outline-none
-                ${errors.subject 
-                  ? 'border-red-500 focus:border-red-500' 
+              className={`bg-dark-800 font-futura w-full rounded-lg border px-4 py-3 text-white transition-all duration-300 focus:outline-none ${
+                errors.subject
+                  ? 'border-red-500 focus:border-red-500'
                   : 'border-dark-600 focus:border-neon-blue focus:shadow-neon'
-                }
-              `}
+              } `}
             >
               <option value="">件名を選択してください</option>
-              {subjects.map(subject => (
+              {subjects.map((subject) => (
                 <option key={subject} value={subject}>
                   {subject}
                 </option>
               ))}
             </select>
             {errors.subject && (
-              <p className="text-red-400 text-sm mt-1">{errors.subject.message}</p>
+              <p className="mt-1 text-sm text-red-400">{errors.subject.message}</p>
             )}
           </div>
-          
+
           {/* お問い合わせ内容 */}
           <div>
-            <label className="block text-sm font-futura text-gray-300 mb-2">
+            <label className="font-futura mb-2 block text-sm text-gray-300">
               お問い合わせ内容 <span className="text-red-400">*</span>
             </label>
             <textarea
               {...register('message')}
               rows={6}
               placeholder="お問い合わせ内容をご記入ください"
-              className={`
-                w-full px-4 py-3 bg-dark-800 border rounded-lg
-                font-futura text-white placeholder-gray-400
-                transition-all duration-300 focus:outline-none
-                ${errors.message 
-                  ? 'border-red-500 focus:border-red-500' 
+              className={`bg-dark-800 font-futura w-full rounded-lg border px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 focus:outline-none ${
+                errors.message
+                  ? 'border-red-500 focus:border-red-500'
                   : 'border-dark-600 focus:border-neon-blue focus:shadow-neon'
-                }
-              `}
+              } `}
             />
             {errors.message && (
-              <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>
+              <p className="mt-1 text-sm text-red-400">{errors.message.message}</p>
             )}
           </div>
-          
+
           {/* 送信ボタン */}
           <Button
             type="submit"
@@ -243,7 +236,7 @@ export default function ContactForm() {
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                <div className="mr-2 h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
                 送信中...
               </div>
             ) : (
@@ -251,21 +244,21 @@ export default function ContactForm() {
             )}
           </Button>
         </form>
-        
+
         {/* 進行状況インジケーター */}
         <motion.div
-          className="mt-6 h-1 bg-dark-700 rounded-full overflow-hidden"
+          className="bg-dark-700 mt-6 h-1 overflow-hidden rounded-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
           <motion.div
-            className="h-full bg-gradient-to-r from-neon-blue to-neon-purple"
+            className="from-neon-blue to-neon-purple h-full bg-gradient-to-r"
             initial={{ width: '0%' }}
             animate={{
               width: `${Math.min(
                 (Object.values(watchedFields).filter(Boolean).length / 5) * 100,
                 100
-              )}%`
+              )}%`,
             }}
             transition={{ duration: 0.3 }}
           />
@@ -277,6 +270,7 @@ export default function ContactForm() {
 ```
 
 ### API Route実装
+
 ```typescript
 // app/api/contact/route.ts
 import { NextRequest, NextResponse } from 'next/server'
@@ -299,25 +293,22 @@ export async function POST(request: NextRequest) {
     // レート制限チェック
     const ip = request.ip ?? 'anonymous'
     const { success } = await ratelimit.limit(ip)
-    
+
     if (!success) {
-      return NextResponse.json(
-        { error: 'Too many requests' },
-        { status: 429 }
-      )
+      return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
-    
+
     // リクエストボディの検証
     const body = await request.json()
     const validatedData = contactSchema.parse(body)
-    
+
     // HTMLエスケープ
     const sanitizedData = {
       ...validatedData,
       name: escapeHtml(validatedData.name),
       message: escapeHtml(validatedData.message),
     }
-    
+
     // メール送信
     const emailHtml = `
       <h2>新しいお問い合わせ</h2>
@@ -328,7 +319,7 @@ export async function POST(request: NextRequest) {
       <p><strong>お問い合わせ内容:</strong></p>
       <p style="white-space: pre-wrap;">${sanitizedData.message}</p>
     `
-    
+
     await resend.emails.send({
       from: 'noreply@hohoemi-lab.com',
       to: ['info@hohoemi-lab.com'],
@@ -336,7 +327,7 @@ export async function POST(request: NextRequest) {
       html: emailHtml,
       replyTo: sanitizedData.email,
     })
-    
+
     // 自動返信メール
     await resend.emails.send({
       from: 'noreply@hohoemi-lab.com',
@@ -352,23 +343,19 @@ export async function POST(request: NextRequest) {
         <p>電話: 090-5646-5670</p>
       `,
     })
-    
+
     return NextResponse.json({ success: true })
-    
   } catch (error) {
     console.error('Contact form error:', error)
-    
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: 'Invalid input data', details: error.errors },
         { status: 400 }
       )
     }
-    
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
@@ -383,6 +370,7 @@ function escapeHtml(unsafe: string): string {
 ```
 
 ### レート制限実装
+
 ```typescript
 // lib/ratelimit.ts
 import { Ratelimit } from '@upstash/ratelimit'
@@ -396,6 +384,7 @@ export const ratelimit = new Ratelimit({
 ```
 
 ## 完了条件
+
 - フォームが正常に動作し、バリデーションが機能する
 - API Routeがメールを送信できる
 - レート制限とセキュリティ対策が実装されている

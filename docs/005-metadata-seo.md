@@ -1,15 +1,19 @@
 # 005: メタデータとSEO基本設定
 
 ## 概要
+
 各ページのメタデータ設定とSEOの基本的な実装を行う
 
 ## 優先度
+
 Medium
 
 ## 前提条件
+
 - 002: ページ構造とルーティング設定が完了していること
 
 ## Todoリスト
+
 - [ ] ルートメタデータの設定
   - [ ] app/layout.tsxのメタデータ設定
   - [ ] サイト全体のデフォルト設定
@@ -31,7 +35,9 @@ Medium
 - [ ] sitemap.xmlの自動生成設定
 
 ## 実装詳細
+
 ### ルートメタデータ
+
 ```typescript
 // app/layout.tsx
 export const metadata: Metadata = {
@@ -39,7 +45,8 @@ export const metadata: Metadata = {
     default: 'パソコン・スマホ ほほ笑みラボ | ゆっくり、何度でも教えます！',
     template: '%s | ほほ笑みラボ',
   },
-  description: '長野県飯田市のパソコン・スマホ教室。シニアから若手ビジネスパーソンまで、最先端のIT教育を提供します。',
+  description:
+    '長野県飯田市のパソコン・スマホ教室。シニアから若手ビジネスパーソンまで、最先端のIT教育を提供します。',
   keywords: ['パソコン教室', 'スマホ教室', '飯田市', 'シニア向け', 'IT教育'],
   authors: [{ name: 'ほほ笑みラボ' }],
   openGraph: {
@@ -55,6 +62,7 @@ export const metadata: Metadata = {
 ```
 
 ### 構造化データ例
+
 ```typescript
 const structuredData = {
   '@context': 'https://schema.org',
@@ -74,6 +82,7 @@ const structuredData = {
 ```
 
 ## 完了条件
+
 - 各ページに適切なメタデータが設定されている
 - OGP画像が正しく表示される
 - 構造化データが実装されている

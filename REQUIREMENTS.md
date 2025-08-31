@@ -154,7 +154,7 @@ const sectionTransitions = {
     opacity: 0,
     scale: 1.2,
   },
-};
+}
 ```
 
 **セクション構成**：

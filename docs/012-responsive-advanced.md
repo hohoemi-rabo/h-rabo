@@ -1,16 +1,20 @@
 # 012: 高度なレスポンシブデザイン実装
 
 ## 概要
+
 全デバイスで最適な体験を提供するための詳細なレスポンシブデザインを実装する
 
 ## 優先度
+
 High
 
 ## 前提条件
+
 - 006: レスポンシブ対応基本実装が完了していること
 - 010: 各セクションのサイバーデザイン実装が完了していること
 
 ## Todoリスト
+
 - [ ] ブレークポイント最適化
   - [ ] カスタムブレークポイントの精密調整
   - [ ] コンテナクエリの活用（必要に応じて）
@@ -37,7 +41,9 @@ High
   - [ ] 折りたたみデバイス対応（必要に応じて）
 
 ## 実装詳細
+
 ### 流動的タイポグラフィ
+
 ```css
 /* globals.css */
 .responsive-text {
@@ -76,6 +82,7 @@ High
 ```
 
 ### レスポンシブコンテナシステム
+
 ```tsx
 // components/ui/ResponsiveContainer.tsx
 interface ContainerProps {
@@ -84,51 +91,47 @@ interface ContainerProps {
   className?: string
 }
 
-export default function ResponsiveContainer({ 
-  children, 
-  size = 'lg', 
-  className = '' 
+export default function ResponsiveContainer({
+  children,
+  size = 'lg',
+  className = '',
 }: ContainerProps) {
   const sizes = {
-    sm: 'max-w-2xl',      // 672px
-    md: 'max-w-4xl',      // 896px  
-    lg: 'max-w-6xl',      // 1152px
-    xl: 'max-w-7xl',      // 1280px
-    full: 'max-w-none'    // 制限なし
+    sm: 'max-w-2xl', // 672px
+    md: 'max-w-4xl', // 896px
+    lg: 'max-w-6xl', // 1152px
+    xl: 'max-w-7xl', // 1280px
+    full: 'max-w-none', // 制限なし
   }
-  
+
   return (
-    <div className={`
-      ${sizes[size]} mx-auto px-4 sm:px-6 lg:px-8
-      ${className}
-    `}>
-      {children}
-    </div>
+    <div className={` ${sizes[size]} mx-auto px-4 sm:px-6 lg:px-8 ${className} `}>{children}</div>
   )
 }
 ```
 
 ### レスポンシブグリッドシステム
+
 ```tsx
 // components/ui/ResponsiveGrid.tsx
 interface GridProps {
   children: React.ReactNode
   cols?: {
-    xs?: number    // < 640px
-    sm?: number    // ≥ 640px
-    md?: number    // ≥ 768px
-    lg?: number    // ≥ 1024px
-    xl?: number    // ≥ 1280px
+    xs?: number // < 640px
+    sm?: number // ≥ 640px
+    md?: number // ≥ 768px
+    lg?: number // ≥ 1024px
+    xl?: number // ≥ 1280px
   }
   gap?: number
   className?: string
 }
 
-export default function ResponsiveGrid({ 
-  children, 
-  cols = { xs: 1, sm: 2, lg: 3 }, 
+export default function ResponsiveGrid({
+  children,
+  cols = { xs: 1, sm: 2, lg: 3 },
   gap = 6,
-  className = '' 
+  className = '',
 }: GridProps) {
   const gridClasses = [
     `grid`,
@@ -138,18 +141,17 @@ export default function ResponsiveGrid({
     cols.md && `md:grid-cols-${cols.md}`,
     cols.lg && `lg:grid-cols-${cols.lg}`,
     cols.xl && `xl:grid-cols-${cols.xl}`,
-    className
-  ].filter(Boolean).join(' ')
-  
-  return (
-    <div className={gridClasses}>
-      {children}
-    </div>
-  )
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  return <div className={gridClasses}>{children}</div>
 }
 ```
 
 ### タッチデバイス最適化
+
 ```tsx
 // hooks/useDeviceDetection.ts
 import { useState, useEffect } from 'react'
@@ -157,36 +159,33 @@ import { useState, useEffect } from 'react'
 export function useDeviceDetection() {
   const [isTouchDevice, setIsTouchDevice] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
-  
+
   useEffect(() => {
     const checkTouchDevice = () => {
       setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
       setIsDesktop(window.innerWidth >= 1024)
     }
-    
+
     checkTouchDevice()
     window.addEventListener('resize', checkTouchDevice)
-    
+
     return () => window.removeEventListener('resize', checkTouchDevice)
   }, [])
-  
+
   return { isTouchDevice, isDesktop }
 }
 
 // components/ui/AdaptiveButton.tsx
 export default function AdaptiveButton({ children, ...props }: ButtonProps) {
   const { isTouchDevice } = useDeviceDetection()
-  
+
   return (
-    <Button 
+    <Button
       {...props}
-      className={`
-        ${props.className || ''}
-        ${isTouchDevice ? 'min-h-[44px] min-w-[44px]' : ''}
-      `}
+      className={` ${props.className || ''} ${isTouchDevice ? 'min-h-[44px] min-w-[44px]' : ''} `}
       // タッチデバイスではホバーエフェクトを無効化
       style={{
-        '--hover-effect': isTouchDevice ? 'none' : 'block'
+        '--hover-effect': isTouchDevice ? 'none' : 'block',
       }}
     >
       {children}
@@ -196,6 +195,7 @@ export default function AdaptiveButton({ children, ...props }: ButtonProps) {
 ```
 
 ### フォントサイズ切り替え機能
+
 ```tsx
 // contexts/AccessibilityContext.tsx
 import { createContext, useContext, useState } from 'react'
@@ -212,17 +212,19 @@ const AccessibilityContext = createContext<AccessibilityContextType | undefined>
 export function AccessibilityProvider({ children }: { children: React.ReactNode }) {
   const [fontSize, setFontSize] = useState<'normal' | 'large' | 'senior'>('normal')
   const [contrast, setContrast] = useState<'normal' | 'high'>('normal')
-  
+
   return (
-    <AccessibilityContext.Provider value={{
-      fontSize, setFontSize,
-      contrast, setContrast
-    }}>
-      <div className={`
-        ${fontSize === 'large' ? 'text-lg' : ''}
-        ${fontSize === 'senior' ? 'senior-mode' : ''}
-        ${contrast === 'high' ? 'high-contrast' : ''}
-      `}>
+    <AccessibilityContext.Provider
+      value={{
+        fontSize,
+        setFontSize,
+        contrast,
+        setContrast,
+      }}
+    >
+      <div
+        className={` ${fontSize === 'large' ? 'text-lg' : ''} ${fontSize === 'senior' ? 'senior-mode' : ''} ${contrast === 'high' ? 'high-contrast' : ''} `}
+      >
         {children}
       </div>
     </AccessibilityContext.Provider>
@@ -231,25 +233,26 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
 ```
 
 ### メディアクエリフック
+
 ```tsx
 // hooks/useMediaQuery.ts
 import { useState, useEffect } from 'react'
 
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false)
-  
+
   useEffect(() => {
     const mediaQuery = window.matchMedia(query)
     setMatches(mediaQuery.matches)
-    
+
     const handler = (event: MediaQueryListEvent) => {
       setMatches(event.matches)
     }
-    
+
     mediaQuery.addEventListener('change', handler)
     return () => mediaQuery.removeEventListener('change', handler)
   }, [query])
-  
+
   return matches
 }
 
@@ -260,12 +263,13 @@ export function useBreakpoints() {
   const isMd = useMediaQuery('(min-width: 768px) and (max-width: 1023px)')
   const isLg = useMediaQuery('(min-width: 1024px) and (max-width: 1279px)')
   const isXl = useMediaQuery('(min-width: 1280px)')
-  
+
   return { isXs, isSm, isMd, isLg, isXl }
 }
 ```
 
 ## 完了条件
+
 - 全デバイスサイズで適切に表示される
 - タッチデバイスでのインタラクションが最適化されている
 - アクセシビリティ機能が実装されている

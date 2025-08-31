@@ -1,15 +1,19 @@
 # 003: 基本レイアウトとナビゲーション
 
 ## 概要
+
 全ページ共通のレイアウトコンポーネントとナビゲーションを実装する
 
 ## 優先度
+
 High
 
 ## 前提条件
+
 - 002: ページ構造とルーティング設定が完了していること
 
 ## Todoリスト
+
 - [ ] ルートレイアウトの実装
   - [ ] app/layout.tsxの更新
   - [ ] メタデータの基本設定
@@ -32,7 +36,9 @@ High
   - [ ] components/ui/Container.tsx
 
 ## 実装詳細
+
 ### ナビゲーションメニュー項目
+
 ```typescript
 const menuItems = [
   { href: '/', label: 'ホーム' },
@@ -45,6 +51,7 @@ const menuItems = [
 ```
 
 ### 基本レイアウト構造
+
 ```typescript
 // app/layout.tsx
 export default function RootLayout({
@@ -65,6 +72,7 @@ export default function RootLayout({
 ```
 
 ## 完了条件
+
 - ヘッダーとフッターが全ページに表示される
 - ナビゲーションリンクが正常に動作する
 - モバイル対応の基本的なレイアウト

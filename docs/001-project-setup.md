@@ -1,15 +1,19 @@
 # 001: プロジェクトセットアップ
 
 ## 概要
+
 プロジェクトの基本的な構成とパッケージのインストールを行う
 
 ## 優先度
+
 High
 
 ## 前提条件
+
 なし
 
 ## Todoリスト
+
 - [×] 必要なパッケージのインストール
   - [×] Framer Motion v11のインストール
   - [×] Three.js (React Three Fiber v8)のインストール
@@ -25,16 +29,19 @@ High
   - [×] パス設定の確認
   - [×] 型定義ファイルの準備
 - [×] ESLint設定の調整
-- [ ] Prettierの設定追加（必要に応じて）
+- [×] Prettierの設定追加（必要に応じて）
 
 ## 実装詳細
+
 ### パッケージインストールコマンド
+
 ```bash
 npm install framer-motion@11 three @react-three/fiber@8 @react-three/drei zustand@4
 npm install -D @types/three
 ```
 
 ### ディレクトリ構造
+
 ```
 src/
 ├── app/           # Next.js App Router
@@ -49,6 +56,7 @@ src/
 ```
 
 ## 完了条件
+
 - すべてのパッケージが正常にインストールされている
 - ディレクトリ構造が作成されている
 - プロジェクトがエラーなく起動する（npm run dev）

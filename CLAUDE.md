@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ### Development
+
 - `npm run dev` - Start development server with Turbopack on http://localhost:3000
 - `npm run build` - Build the application for production with Turbopack
 - `npm run start` - Start production server
@@ -16,6 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a Next.js 15.5.2 application using the App Router architecture with TypeScript and Tailwind CSS.
 
 ### Project Structure
+
 - `src/app/` - Next.js App Router pages and layouts
   - `layout.tsx` - Root layout component
   - `page.tsx` - Home page component
@@ -23,6 +25,7 @@ This is a Next.js 15.5.2 application using the App Router architecture with Type
 - Path alias: `@/*` maps to `./src/*`
 
 ### Technology Stack
+
 - **Framework**: Next.js 15.5.2 with Turbopack
 - **Language**: TypeScript with strict mode enabled
 - **Styling**: Tailwind CSS v3.4.17
@@ -30,6 +33,7 @@ This is a Next.js 15.5.2 application using the App Router architecture with Type
 - **Linting**: ESLint with Next.js config
 
 ### Configuration Notes
+
 - TypeScript is configured with strict mode and module resolution set to "bundler"
 - Tailwind content paths include all components in `src/pages/`, `src/components/`, and `src/app/`
 - ESLint extends Next.js core-web-vitals and TypeScript configurations
@@ -37,39 +41,49 @@ This is a Next.js 15.5.2 application using the App Router architecture with Type
 ## プロジェクト要件定義
 
 ### プロジェクト概要
+
 **パソコン・スマホ ほほ笑みラボ** の公式Webサイトリニューアルプロジェクト
+
 - シニア向けの親しみやすいイメージから、最先端のIT感溢れるモダンなデザインへ刷新
 - 「ほほ笑みラボ」という温かみのある名前と、クールなデザインのギャップで印象的なブランディングを実現
 - ビジネスパーソン層への訴求力強化
 
 ### 基本情報
+
 - **正式名称**: パソコン・スマホ ほほ笑みラボ
 - **キャッチコピー**: ゆっくり、何度でも教えます！
 - **所在地**: 〒395-0002 長野県飯田市上郷飯沼2640-1
 - **連絡先**: 090-5646-5670
 
 ### 必要な追加技術スタック
+
 - **アニメーション**: Framer Motion v11
 - **3Dグラフィックス**: Three.js (React Three Fiber v8)
 - **状態管理**: Zustand v4
 
 ### デザイン要件
+
 #### デザインコンセプト
+
 - **キーワード**: 最先端、モダン、クール、IT感満載、プロフェッショナル
 - **カラースキーム**: ダークモード基調、ネオンカラーのアクセント
 - **タイポグラフィ**: 未来的でシャープなフォント
 
 #### 3D要素とアニメーション
+
 - Three.jsを活用した印象的な3Dオブジェクト（デジタルデータの流れ、幾何学的オブジェクト、サイバー空間グリッド等）
 - スクロールトリガーアニメーション、ホバーエフェクト、ページ遷移アニメーション
 
 #### 革新的な3D空間ページ遷移システム
+
 - 縦スクロールではなく、3D空間での移動によるセクション切り替え
 - Framer Motion + CSS 3D Transformのハイブリッド方式
 - 各セクションが異なるアニメーションで出現（回転、ズーム、浮き上がり等）
 
 ### サービス内容
+
 #### コース受講サービス
+
 1. **シニア向け（グループレッスン）**
    - 初心者コース、バラエティコース、ステップアップコース
    - 料金: 2時間2,000円、週1回
@@ -79,12 +93,14 @@ This is a Next.js 15.5.2 application using the App Router architecture with Type
    - 料金: 2時間2,000円（内容により変動）
 
 #### 単発利用サービス
+
 - 新品PC購入サポート: 5,000円
 - PINコード忘れ対応: 5,000円（出張込み）
 - パソコン最適化: 5,000円
 - スマホ動画編集: 3,000円
 
 ### 必須機能要件
+
 1. **お問い合わせフォーム**
    - バリデーション機能、送信確認画面
 
@@ -95,16 +111,19 @@ This is a Next.js 15.5.2 application using the App Router architecture with Type
    - スライダー形式で表示（3件の仮データ）
 
 ### ページ構成
+
 - **トップページ**: ヒーローセクション（3D要素）、サービス紹介、講師紹介、生徒さんの声、お知らせ、アクセス
 - **サービス詳細ページ**: コース受講、単発利用、料金表
 - **その他**: FAQ、お問い合わせ、ブログ一覧、プライバシーポリシー
 
 ### パフォーマンス要件
+
 - Lighthouseスコア90以上
 - 初回読み込み3秒以内
 - 60fps維持のスムーズなアニメーション
 
 ### 開発フェーズ
+
 1. **Phase 1**: 基本構築（プロジェクトセットアップ、レイアウト、ルーティング）
 2. **Phase 2**: デザイン実装（UIコンポーネント、3D要素、アニメーション）
 3. **Phase 3**: 機能実装（フォーム、ブログ、レスポンシブ）
@@ -113,7 +132,9 @@ This is a Next.js 15.5.2 application using the App Router architecture with Type
 ## Next.js App Router ベストプラクティス
 
 ### コンポーネント設計
+
 #### Server Components vs Client Components
+
 - **デフォルトはServer Component**: データフェッチやバックエンド処理はServer Componentで実装
 - **Client Componentは必要最小限**: `'use client'`は本当に必要な場合のみ使用
 - **境界を明確に**: Client Componentは葉コンポーネントに配置し、Server Componentでラップ
@@ -140,7 +161,9 @@ export default function InteractiveButton({ data }) {
 ```
 
 ### ファイル構造とルーティング
+
 #### ディレクトリ構成
+
 ```
 src/
 ├── app/                      # App Router
@@ -161,6 +184,7 @@ src/
 ```
 
 #### 特殊ファイル
+
 - `page.tsx`: ルートを定義
 - `layout.tsx`: 共通レイアウト（ネストされたレイアウト可能）
 - `loading.tsx`: ローディングUI（Suspenseの自動ラップ）
@@ -169,7 +193,9 @@ src/
 - `template.tsx`: レイアウトと似ているが、ナビゲーション時に再マウント
 
 ### データフェッチング
+
 #### Server Componentでのフェッチ
+
 ```typescript
 // app/posts/page.tsx
 async function getPosts() {
@@ -186,13 +212,16 @@ export default async function PostsPage() {
 ```
 
 #### キャッシュ戦略
+
 - `force-cache`: デフォルト、ビルド時にキャッシュ
 - `no-store`: リクエスト毎にフェッチ
 - `next: { revalidate: seconds }`: 時間ベースの再検証
 - `next: { tags: ['posts'] }`: タグベースの再検証
 
 ### パフォーマンス最適化
+
 #### Parallel Data Fetching
+
 ```typescript
 // 並列でデータフェッチ
 export default async function Page() {
@@ -206,6 +235,7 @@ export default async function Page() {
 ```
 
 #### Streaming & Suspense
+
 ```typescript
 // app/page.tsx
 import { Suspense } from 'react'
@@ -224,17 +254,20 @@ export default function Page() {
 ```
 
 #### Partial Prerendering (実験的機能)
+
 ```typescript
 // next.config.ts
 const nextConfig = {
   experimental: {
-    ppr: true // Partial Prerenderingを有効化
-  }
+    ppr: true, // Partial Prerenderingを有効化
+  },
 }
 ```
 
 ### メタデータ管理
+
 #### 静的メタデータ
+
 ```typescript
 // app/about/page.tsx
 export const metadata = {
@@ -243,12 +276,13 @@ export const metadata = {
   openGraph: {
     title: 'About | ほほ笑みラボ',
     description: '最先端のIT教育を提供',
-    images: ['/og-image.png']
-  }
+    images: ['/og-image.png'],
+  },
 }
 ```
 
 #### 動的メタデータ
+
 ```typescript
 export async function generateMetadata({ params }) {
   const post = await getPost(params.id)
@@ -260,6 +294,7 @@ export async function generateMetadata({ params }) {
 ```
 
 ### Server Actions
+
 ```typescript
 // app/actions.ts
 'use server'
@@ -269,10 +304,10 @@ import { revalidatePath } from 'next/cache'
 export async function createPost(formData: FormData) {
   const title = formData.get('title')
   const content = formData.get('content')
-  
+
   // データベースに保存
   await db.post.create({ title, content })
-  
+
   // キャッシュを再検証
   revalidatePath('/posts')
 }
@@ -292,6 +327,7 @@ export default function NewPost() {
 ```
 
 ### エラーハンドリング
+
 ```typescript
 // app/error.tsx
 'use client'
@@ -313,6 +349,7 @@ export default function Error({
 ```
 
 ### 画像最適化
+
 ```typescript
 import Image from 'next/image'
 
@@ -332,6 +369,7 @@ export default function Hero() {
 ```
 
 ### ミドルウェア
+
 ```typescript
 // middleware.ts
 import { NextResponse } from 'next/server'
@@ -340,18 +378,19 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   // 認証チェック
   const token = request.cookies.get('token')
-  
+
   if (!token && request.nextUrl.pathname.startsWith('/dashboard')) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/admin/:path*']
+  matcher: ['/dashboard/:path*', '/admin/:path*'],
 }
 ```
 
 ### 環境変数
+
 ```typescript
 // サーバー側のみ
 process.env.DATABASE_URL
@@ -361,6 +400,7 @@ process.env.NEXT_PUBLIC_API_URL
 ```
 
 ### 型安全性
+
 ```typescript
 // app/api/posts/route.ts
 import { NextRequest, NextResponse } from 'next/server'
@@ -368,12 +408,13 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const query = searchParams.get('query')
-  
+
   return NextResponse.json({ query })
 }
 ```
 
 ### 重要な注意点
+
 1. **Client Componentの使用を最小限に**: パフォーマンスとSEOの観点から
 2. **データフェッチはServer Componentで**: クライアントからの不要なAPIコールを避ける
 3. **loading.tsxを活用**: ユーザー体験の向上
@@ -383,9 +424,11 @@ export async function GET(request: NextRequest) {
 ## チケット管理システム
 
 ### チケット構成
+
 プロジェクトは `/docs` 配下に段階的なチケットシステムで管理されています。
 
 #### Phase 1: 基本構築 (001-006)
+
 - 001: プロジェクトセットアップ
 - 002: ページ構造とルーティング設定
 - 003: 基本レイアウトとナビゲーション
@@ -394,6 +437,7 @@ export async function GET(request: NextRequest) {
 - 006: レスポンシブ対応基本実装
 
 #### Phase 2: デザイン実装 (007-012)
+
 - 007: デザインシステム・カラーパレット設定
 - 008: UIコンポーネントライブラリ作成
 - 009: ヘッダー・ナビゲーションのサイバーデザイン
@@ -402,18 +446,21 @@ export async function GET(request: NextRequest) {
 - 012: 高度なレスポンシブデザイン実装
 
 #### Phase 3: アニメーション実装 (013-016)
+
 - 013: Three.js 3D要素の実装
 - 014: 革新的な3D空間ページ遷移システム
 - 015: Framer Motion基本アニメーション実装
 - 016: 高度なエフェクト・インタラクション実装
 
 #### Phase 4: バックエンド機能 (017-020)
+
 - 017: お問い合わせフォーム実装
 - 018: ブログシステム実装
 - 019: データ管理・CMS機能実装
 - 020: パフォーマンス最適化・SEO対策
 
 ### チケット内Todo管理
+
 各チケット内でのTodo管理は以下の記法を使用します：
 
 ```markdown
@@ -422,12 +469,14 @@ export async function GET(request: NextRequest) {
 ```
 
 ### 実装順序
+
 1. **シンプルな状態で全体を作る** (Phase 1-2)
 2. **デザインの見た目を整える** (Phase 2完了)
 3. **複雑なアニメーション** (Phase 3)
 4. **バックエンド関係** (Phase 4)
 
 ### チケット使用方法
+
 1. 各フェーズを順番に実装
 2. チケット内のTodoリストを確認し、順次実装
 3. 完了時は `- [ ]` を `- [×]` に変更
@@ -435,6 +484,7 @@ export async function GET(request: NextRequest) {
 5. 問題や変更があれば該当チケットに詳細を追記
 
 ### 注意事項
+
 - チケットは連番で管理され、依存関係が明確
 - 各チケットには前提条件と完了条件が記載
 - 実装詳細にサンプルコードを含む

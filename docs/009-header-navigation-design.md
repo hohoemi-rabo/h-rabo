@@ -1,16 +1,20 @@
 # 009: ヘッダー・ナビゲーションのサイバーデザイン
 
 ## 概要
+
 未来感のあるヘッダーデザインとナビゲーションシステムを実装する
 
 ## 優先度
+
 High
 
 ## 前提条件
+
 - 007: デザインシステム・カラーパレット設定が完了していること
 - 008: UIコンポーネントライブラリ作成が完了していること
 
 ## Todoリスト
+
 - [ ] ヘッダーデザインの実装
   - [ ] サイバーグリッド背景
   - [ ] ネオンロゴデザイン
@@ -32,7 +36,9 @@ High
   - [ ] ホバー時のエフェクト強化
 
 ## 実装詳細
+
 ### ヘッダーコンポーネント
+
 ```tsx
 // components/layouts/Header.tsx
 'use client'
@@ -42,7 +48,7 @@ import { motion } from 'framer-motion'
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
@@ -50,12 +56,12 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-  
+
   return (
     <motion.header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-dark-900/95 backdrop-blur-md border-b border-neon-blue/30' 
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled
+          ? 'bg-dark-900/95 border-neon-blue/30 border-b backdrop-blur-md'
           : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
@@ -63,34 +69,34 @@ export default function Header() {
       transition={{ type: 'spring', stiffness: 100 }}
     >
       {/* サイバーグリッド背景 */}
-      <div className="absolute inset-0 cyber-grid opacity-20"></div>
-      
+      <div className="cyber-grid absolute inset-0 opacity-20"></div>
+
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* ロゴ */}
           <motion.div
-            className="text-2xl font-cyber font-bold neon-text"
+            className="font-cyber neon-text text-2xl font-bold"
             whileHover={{ scale: 1.05, textShadow: '0 0 20px #00d4ff' }}
           >
             ほほ笑みラボ
           </motion.div>
-          
+
           {/* デスクトップナビゲーション */}
-          <div className="hidden md:flex items-center space-x-8">
-            {menuItems.map(item => (
+          <div className="hidden items-center space-x-8 md:flex">
+            {menuItems.map((item) => (
               <NavItem key={item.href} {...item} />
             ))}
             <CTAButton />
           </div>
-          
+
           {/* モバイルメニューボタン */}
-          <HamburgerButton 
+          <HamburgerButton
             isOpen={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           />
         </div>
       </nav>
-      
+
       {/* モバイルメニュー */}
       <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
     </motion.header>
@@ -99,6 +105,7 @@ export default function Header() {
 ```
 
 ### ナビゲーションアイテム
+
 ```tsx
 // components/ui/NavItem.tsx
 interface NavItemProps {
@@ -111,29 +118,26 @@ export default function NavItem({ href, label, isActive }: NavItemProps) {
   return (
     <motion.a
       href={href}
-      className={`
-        relative font-futura font-medium transition-all duration-300
-        ${isActive ? 'text-neon-blue' : 'text-white hover:text-neon-blue'}
-      `}
+      className={`font-futura relative font-medium transition-all duration-300 ${isActive ? 'text-neon-blue' : 'hover:text-neon-blue text-white'} `}
       whileHover={{ scale: 1.05 }}
     >
       {label}
-      
+
       {/* アンダーラインアニメーション */}
       <motion.div
-        className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple"
+        className="from-neon-blue to-neon-purple absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r"
         initial={{ width: 0 }}
         whileHover={{ width: '100%' }}
         transition={{ duration: 0.3 }}
       />
-      
+
       {/* ホバー時のグロウ効果 */}
       <motion.div
         className="absolute inset-0 rounded-lg"
         initial={{ opacity: 0 }}
-        whileHover={{ 
-          opacity: 0.2, 
-          boxShadow: '0 0 20px rgba(0, 212, 255, 0.5)' 
+        whileHover={{
+          opacity: 0.2,
+          boxShadow: '0 0 20px rgba(0, 212, 255, 0.5)',
         }}
       />
     </motion.a>
@@ -142,17 +146,13 @@ export default function NavItem({ href, label, isActive }: NavItemProps) {
 ```
 
 ### CTAボタン
+
 ```tsx
 // components/ui/CTAButton.tsx
 export default function CTAButton() {
   return (
     <motion.button
-      className={`
-        px-6 py-2 bg-gradient-to-r from-neon-pink to-neon-purple
-        text-white font-cyber font-semibold rounded-lg
-        shadow-neon hover:shadow-glow transition-all duration-300
-        animate-pulse hover:animate-none
-      `}
+      className={`from-neon-pink to-neon-purple font-cyber shadow-neon hover:shadow-glow animate-pulse rounded-lg bg-gradient-to-r px-6 py-2 font-semibold text-white transition-all duration-300 hover:animate-none`}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
@@ -163,6 +163,7 @@ export default function CTAButton() {
 ```
 
 ### モバイルメニュー
+
 ```tsx
 // components/ui/MobileMenu.tsx
 interface MobileMenuProps {
@@ -175,19 +176,16 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     <>
       {/* オーバーレイ */}
       <motion.div
-        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 md:hidden"
+        className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm md:hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: isOpen ? 1 : 0 }}
         style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
         onClick={onClose}
       />
-      
+
       {/* メニューパネル */}
       <motion.div
-        className={`
-          fixed top-0 right-0 h-full w-80 bg-dark-900/95 backdrop-blur-md
-          border-l border-neon-blue/30 z-50 md:hidden cyber-grid
-        `}
+        className={`bg-dark-900/95 border-neon-blue/30 cyber-grid fixed right-0 top-0 z-50 h-full w-80 border-l backdrop-blur-md md:hidden`}
         initial={{ x: '100%' }}
         animate={{ x: isOpen ? 0 : '100%' }}
         transition={{ type: 'spring', stiffness: 100 }}
@@ -197,11 +195,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <motion.a
               key={item.href}
               href={item.href}
-              className="block py-4 text-white hover:text-neon-blue transition-colors"
+              className="hover:text-neon-blue block py-4 text-white transition-colors"
               initial={{ opacity: 0, x: 50 }}
-              animate={{ 
-                opacity: isOpen ? 1 : 0, 
-                x: isOpen ? 0 : 50 
+              animate={{
+                opacity: isOpen ? 1 : 0,
+                x: isOpen ? 0 : 50,
               }}
               transition={{ delay: index * 0.1 }}
               onClick={onClose}
@@ -209,7 +207,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               {item.label}
             </motion.a>
           ))}
-          
+
           <motion.div
             className="pt-6"
             initial={{ opacity: 0 }}
@@ -226,6 +224,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 ```
 
 ## 完了条件
+
 - ヘッダーがサイバー感のあるデザインになっている
 - ナビゲーションにホバーエフェクトが実装されている
 - モバイルメニューがスムーズにアニメーションする
