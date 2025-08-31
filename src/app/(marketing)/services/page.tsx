@@ -1,18 +1,28 @@
+import Container from '@/components/ui/Container'
+
 export default function Services() {
   return (
-    <div>
-      <h1>サービス詳細</h1>
-      <p>コース受講サービス・単発利用サービスの詳細</p>
-      <section>
-        <h2>シニア向けグループレッスン</h2>
-        <p>初心者コース、バラエティコース、ステップアップコース</p>
-        <p>料金: 2時間2,000円、週1回</p>
-      </section>
-      <section>
-        <h2>ビジネスパーソン向け個別レッスン</h2>
-        <p>課題解決型のカスタマイズレッスン</p>
-        <p>料金: 2時間2,000円（内容により変動）</p>
-      </section>
-    </div>
+    <Container className="py-12">
+      <div className="space-y-8">
+        <div className="space-y-4">
+          <h1 className="text-3xl font-bold text-gray-900">サービス詳細</h1>
+          <p className="text-lg text-gray-700">コース受講サービス・単発利用サービスの詳細</p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          <section className="bg-white p-6 rounded-lg shadow-sm border">
+            <h2 className="text-2xl font-semibold text-blue-600 mb-4">シニア向けグループレッスン</h2>
+            <p className="text-gray-700 mb-3">初心者コース、バラエティコース、ステップアップコース</p>
+            <p className="font-semibold text-lg text-gray-900">料金: 2時間2,000円、週1回</p>
+          </section>
+          
+          <section className="bg-white p-6 rounded-lg shadow-sm border">
+            <h2 className="text-2xl font-semibold text-blue-600 mb-4">ビジネスパーソン向け個別レッスン</h2>
+            <p className="text-gray-700 mb-3">課題解決型のカスタマイズレッスン</p>
+            <p className="font-semibold text-lg text-gray-900">料金: 2時間2,000円（内容により変動）</p>
+          </section>
+        </div>
+      </div>
+    </Container>
   )
 }
