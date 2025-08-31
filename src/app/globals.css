@@ -326,3 +326,8 @@ body {
     transform: skew(0.1deg);
   }
 }
+
+/* Radial gradient utilities */
+.bg-gradient-radial {
+  background-image: radial-gradient(circle, var(--tw-gradient-stops));
+}

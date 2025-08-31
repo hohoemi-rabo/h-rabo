@@ -1,5 +1,8 @@
-import Link from 'next/link'
+'use client'
+
+import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
+import ServiceCard from './ServiceCard'
 
 const services = [
   {
@@ -9,11 +12,11 @@ const services = [
     price: '2時間 2,000円',
     features: [
       '初心者コース',
-      'バラエティコース',
+      'バラエティコース', 
       'ステップアップコース',
       '週1回開催'
     ],
-    icon: '👥'
+    icon: 'network'
   },
   {
     id: 2,
@@ -26,7 +29,7 @@ const services = [
       '実践的なスキル',
       'フレキシブル対応'
     ],
-    icon: '💼'
+    icon: 'cpu'
   },
   {
     id: 3,
@@ -39,52 +42,117 @@ const services = [
       'パソコン最適化',
       'スマホ動画編集'
     ],
-    icon: '🛠️'
+    icon: 'circuit'
   },
 ]
 
 export default function ServicesSection() {
   return (
-    <section className="py-16 sm:py-20 bg-white">
-      <Container>
-        <div className="text-center mb-12 sm:mb-16 px-4">
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            サービス紹介
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            あなたのニーズに合わせた多様な学習プランをご用意しています
-          </p>
-        </div>
+    <section className="relative py-20 sm:py-24 bg-dark-900 overflow-hidden">
+      {/* 背景エフェクト */}
+      <div className="cyber-grid absolute inset-0 opacity-20" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-blue/5 to-transparent" />
+      
+      {/* 装飾的なライン */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-blue to-transparent opacity-50" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-purple to-transparent opacity-50" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4">
-          {services.map((service) => (
-            <div key={service.id} className="bg-white rounded-xl shadow-lg p-4 sm:p-6 border border-gray-100 hover:shadow-xl transition-shadow">
-              <div className="text-center mb-4 sm:mb-6">
-                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{service.icon}</div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">{service.description}</p>
-                <div className="text-xl sm:text-2xl font-bold text-blue-600">{service.price}</div>
-              </div>
-              
-              <ul className="space-y-2 mb-4 sm:mb-6">
-                {service.features.map((feature, index) => (
-                  <li key={index} className="flex items-center text-sm sm:text-base text-gray-700">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 flex-shrink-0"></span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <Link
-                href="/services"
-                className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors"
-              >
-                詳細を見る
-              </Link>
-            </div>
+      <Container>
+        {/* セクションヘッダー */}
+        <motion.div
+          className="text-center mb-16 px-4"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h2
+            className="font-cyber text-3xl xs:text-4xl sm:text-5xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink">
+              サービス
+            </span>
+            <span className="neon-text block sm:inline"> 紹介</span>
+          </motion.h2>
+          
+          <motion.p
+            className="font-futura text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            あなたのニーズに合わせた多様な学習プランをご用意しています
+            <br className="hidden sm:block" />
+            <span className="text-neon-green">最先端のIT教育で、未来を切り拓きましょう</span>
+          </motion.p>
+
+          {/* 装飾的な区切り線 */}
+          <motion.div
+            className="mt-8 flex justify-center"
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <div className="w-24 h-px bg-gradient-to-r from-neon-blue to-neon-purple shadow-neon" />
+          </motion.div>
+        </motion.div>
+
+        {/* サービスカード */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-4">
+          {services.map((service, index) => (
+            <ServiceCard
+              key={service.id}
+              title={service.title}
+              description={service.description}
+              price={service.price}
+              features={service.features}
+              icon={service.icon}
+              delay={index * 0.2}
+            />
           ))}
         </div>
+
+        {/* 底部装飾 */}
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <p className="font-futura text-gray-400 text-sm">
+            ※ 料金は内容により変動する場合があります。詳しくはお問い合わせください。
+          </p>
+        </motion.div>
       </Container>
+
+      {/* 浮遊装飾要素 */}
+      <motion.div
+        className="absolute top-20 left-20 w-3 h-3 bg-neon-pink rounded-full opacity-40"
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.4, 0.8, 0.4],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 4,
+          ease: 'easeInOut',
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-20 w-2 h-2 bg-neon-cyan rounded-full opacity-40"
+        animate={{
+          y: [0, -15, 0],
+          opacity: [0.4, 0.8, 0.4],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 3.5,
+          ease: 'easeInOut',
+          delay: 1,
+        }}
+      />
     </section>
   )
 }
