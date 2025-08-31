@@ -10,21 +10,21 @@ High
 なし
 
 ## Todoリスト
-- [ ] 必要なパッケージのインストール
-  - [ ] Framer Motion v11のインストール
-  - [ ] Three.js (React Three Fiber v8)のインストール
-  - [ ] Zustand v4のインストール
-  - [ ] 追加のUIライブラリ（必要に応じて）
-- [ ] プロジェクト構造の作成
-  - [ ] src/components ディレクトリ構成
-  - [ ] src/lib ディレクトリ作成
-  - [ ] src/types ディレクトリ作成
-  - [ ] src/hooks ディレクトリ作成
-  - [ ] src/store ディレクトリ作成（Zustand用）
-- [ ] TypeScript設定の調整
-  - [ ] パス設定の確認
-  - [ ] 型定義ファイルの準備
-- [ ] ESLint設定の調整
+- [×] 必要なパッケージのインストール
+  - [×] Framer Motion v11のインストール
+  - [×] Three.js (React Three Fiber v8)のインストール
+  - [×] Zustand v4のインストール
+  - [×] 追加のUIライブラリ（必要に応じて）
+- [×] プロジェクト構造の作成
+  - [×] src/components ディレクトリ構成
+  - [×] src/lib ディレクトリ作成
+  - [×] src/types ディレクトリ作成
+  - [×] src/hooks ディレクトリ作成
+  - [×] src/store ディレクトリ作成（Zustand用）
+- [×] TypeScript設定の調整
+  - [×] パス設定の確認
+  - [×] 型定義ファイルの準備
+- [×] ESLint設定の調整
 - [ ] Prettierの設定追加（必要に応じて）
 
 ## 実装詳細
