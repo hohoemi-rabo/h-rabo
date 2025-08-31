@@ -1,0 +1,29 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="url(#gradient)"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1E40AF"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景装飾 -->
+  <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1100" cy="500" r="120" fill="rgba(255,255,255,0.05)"/>
+  
+  <!-- メインテキスト -->
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white" text-anchor="middle">
+    パソコン・スマホ
+  </text>
+  <text x="600" y="360" font-family="Arial, sans-serif" font-size="84" font-weight="bold" fill="#FEF08A" text-anchor="middle">
+    ほほ笑みラボ
+  </text>
+  
+  <!-- サブテキスト -->
+  <text x="600" y="450" font-family="Arial, sans-serif" font-size="36" fill="rgba(255,255,255,0.9)" text-anchor="middle">
+    ゆっくり、何度でも教えます！
+  </text>
+  <text x="600" y="500" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.7)" text-anchor="middle">
+    長野県飯田市のパソコン・スマホ教室
+  </text>
+</svg>

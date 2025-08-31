@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# 主要なページ
+Allow: /about
+Allow: /services
+Allow: /blog
+Allow: /contact
+Allow: /faq
+
+# プライバシーポリシーは検索エンジンに表示しない
+Disallow: /privacy
+
+# システムファイルを除外
+Disallow: /_next/
+Disallow: /api/
+Disallow: *.json
+
+# サイトマップの場所
+Sitemap: https://hohoemi-lab.com/sitemap.xml
+
+# 主要検索エンジンのクローラーへの配慮
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# クロール頻度の調整
+Crawl-delay: 1

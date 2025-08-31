@@ -1,4 +1,16 @@
+import type { Metadata } from 'next'
 import Container from '@/components/ui/Container'
+
+export const metadata: Metadata = {
+  title: '講師紹介',
+  description: 'パソコン・スマホ ほほ笑みラボの講師紹介。IT指導歴10年以上の経験豊富な講師が、最先端のIT技術を分かりやすく丁寧に指導いたします。',
+  keywords: ['講師紹介', 'IT指導', 'パソコン講師', 'スマホ講師', '経験豊富', '専門指導'],
+  openGraph: {
+    title: '講師紹介 | ほほ笑みラボ',
+    description: 'IT指導歴10年以上の経験豊富な講師が、最先端のIT技術を分かりやすく丁寧に指導いたします。',
+    url: 'https://hohoemi-lab.com/about',
+  },
+}
 
 export default function About() {
   return (

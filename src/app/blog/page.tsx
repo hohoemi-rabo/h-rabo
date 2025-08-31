@@ -1,3 +1,16 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'ブログ・お知らせ',
+  description: 'ほほ笑みラボのブログ・お知らせ一覧。最新のIT情報、レッスン情報、お知らせをお届けします。',
+  keywords: ['ブログ', 'お知らせ', 'IT情報', '新着情報', 'レッスン情報'],
+  openGraph: {
+    title: 'ブログ・お知らせ | ほほ笑みラボ',
+    description: '最新のIT情報、レッスン情報、お知らせをお届けします。',
+    url: 'https://hohoemi-lab.com/blog',
+  },
+}
+
 export default function Blog() {
   return (
     <div>

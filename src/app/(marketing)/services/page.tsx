@@ -1,4 +1,16 @@
+import type { Metadata } from 'next'
 import Container from '@/components/ui/Container'
+
+export const metadata: Metadata = {
+  title: 'サービス詳細',
+  description: 'ほほ笑みラボのサービス詳細。シニア向けグループレッスン、ビジネスパーソン向け個別レッスン、単発利用サービスなど多様なプランをご用意しています。',
+  keywords: ['サービス', '料金', 'グループレッスン', '個別レッスン', 'シニア向け', 'ビジネス向け', 'パソコン教室サービス'],
+  openGraph: {
+    title: 'サービス詳細 | ほほ笑みラボ',
+    description: 'シニア向けグループレッスンから個別指導まで、あなたのニーズに合わせた多様な学習プランをご用意しています。',
+    url: 'https://hohoemi-lab.com/services',
+  },
+}
 
 export default function Services() {
   return (

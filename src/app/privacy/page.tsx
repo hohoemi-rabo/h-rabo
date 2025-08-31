@@ -1,3 +1,20 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'プライバシーポリシー',
+  description: 'ほほ笑みラボのプライバシーポリシー。個人情報の取り扱いに関する方針について詳しくご説明いたします。',
+  keywords: ['プライバシーポリシー', '個人情報保護', 'データ保護', '情報管理'],
+  openGraph: {
+    title: 'プライバシーポリシー | ほほ笑みラボ',
+    description: '個人情報の取り扱いに関する方針について詳しくご説明いたします。',
+    url: 'https://hohoemi-lab.com/privacy',
+  },
+  robots: {
+    index: false, // プライバシーポリシーは検索結果に表示しない
+    follow: true,
+  },
+}
+
 export default function Privacy() {
   return (
     <div>

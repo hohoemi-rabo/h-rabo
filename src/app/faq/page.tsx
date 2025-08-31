@@ -1,3 +1,16 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'よくある質問',
+  description: 'ほほ笑みラボのよくある質問。レッスンの料金、初心者の対応、出張サービスなど、お客様からよくいただくご質問にお答えします。',
+  keywords: ['よくある質問', 'FAQ', '料金', '初心者', 'レッスン', 'サポート'],
+  openGraph: {
+    title: 'よくある質問 | ほほ笑みラボ',
+    description: 'お客様からよくいただくご質問にお答えします。レッスンに関する疑問を解決いたします。',
+    url: 'https://hohoemi-lab.com/faq',
+  },
+}
+
 export default function FAQ() {
   return (
     <div>
