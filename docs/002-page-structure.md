@@ -14,24 +14,24 @@ High
 
 ## Todoリスト
 
-- [ ] ページファイルの作成
-  - [ ] app/page.tsx（トップページ）の基本構造
-  - [ ] app/about/page.tsx（講師紹介）
-  - [ ] app/services/page.tsx（サービス詳細）
-  - [ ] app/blog/page.tsx（ブログ一覧）
-  - [ ] app/blog/[slug]/page.tsx（ブログ詳細）
-  - [ ] app/contact/page.tsx（お問い合わせ）
-  - [ ] app/faq/page.tsx（よくある質問）
-  - [ ] app/privacy/page.tsx（プライバシーポリシー）
-- [ ] ルートグループの設定
-  - [ ] app/(marketing)/ グループ作成
-  - [ ] 必要に応じた整理
-- [ ] 404ページの作成
-  - [ ] app/not-found.tsx
-- [ ] エラーページの作成
-  - [ ] app/error.tsx
-- [ ] ローディングUIの作成
-  - [ ] app/loading.tsx
+- [×] ページファイルの作成
+  - [×] app/page.tsx（トップページ）の基本構造
+  - [×] app/about/page.tsx（講師紹介）
+  - [×] app/services/page.tsx（サービス詳細）
+  - [×] app/blog/page.tsx（ブログ一覧）
+  - [×] app/blog/[slug]/page.tsx（ブログ詳細）
+  - [×] app/contact/page.tsx（お問い合わせ）
+  - [×] app/faq/page.tsx（よくある質問）
+  - [×] app/privacy/page.tsx（プライバシーポリシー）
+- [×] ルートグループの設定
+  - [×] app/(marketing)/ グループ作成
+  - [×] 必要に応じた整理
+- [×] 404ページの作成
+  - [×] app/not-found.tsx
+- [×] エラーページの作成
+  - [×] app/error.tsx
+- [×] ローディングUIの作成
+  - [×] app/loading.tsx
 
 ## 実装詳細
 
