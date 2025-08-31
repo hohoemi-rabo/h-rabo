@@ -14,31 +14,31 @@ High
 
 ## Todoリスト
 
-- [ ] ヒーローセクションの作成
-  - [ ] components/features/HeroSection.tsx
-  - [ ] キャッチコピーの配置
-  - [ ] 仮の背景画像またはプレースホルダー
-- [ ] サービス紹介セクション
-  - [ ] components/features/ServicesSection.tsx
-  - [ ] 3つのサービスカード（仮デザイン）
-  - [ ] 基本的なグリッドレイアウト
-- [ ] 講師紹介セクション
-  - [ ] components/features/InstructorSection.tsx
-  - [ ] プロフィール情報の配置
-  - [ ] 経歴の表示
-- [ ] 生徒さんの声セクション
-  - [ ] components/features/TestimonialsSection.tsx
-  - [ ] 3件の仮データ作成
-  - [ ] 基本的なカード表示
-- [ ] お知らせセクション
-  - [ ] components/features/NewsSection.tsx
-  - [ ] 仮のお知らせデータ
-  - [ ] リスト表示
-- [ ] アクセス情報セクション
-  - [ ] components/features/AccessSection.tsx
-  - [ ] 所在地情報
-  - [ ] 営業時間
-  - [ ] 連絡先
+- [×] ヒーローセクションの作成
+  - [×] components/features/HeroSection.tsx
+  - [×] キャッチコピーの配置
+  - [×] 仮の背景画像またはプレースホルダー
+- [×] サービス紹介セクション
+  - [×] components/features/ServicesSection.tsx
+  - [×] 3つのサービスカード（仮デザイン）
+  - [×] 基本的なグリッドレイアウト
+- [×] 講師紹介セクション
+  - [×] components/features/InstructorSection.tsx
+  - [×] プロフィール情報の配置
+  - [×] 経歴の表示
+- [×] 生徒さんの声セクション
+  - [×] components/features/TestimonialsSection.tsx
+  - [×] 3件の仮データ作成
+  - [×] 基本的なカード表示
+- [×] お知らせセクション
+  - [×] components/features/NewsSection.tsx
+  - [×] 仮のお知らせデータ
+  - [×] リスト表示
+- [×] アクセス情報セクション
+  - [×] components/features/AccessSection.tsx
+  - [×] 所在地情報
+  - [×] 営業時間
+  - [×] 連絡先
 
 ## 実装詳細
 
