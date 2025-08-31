@@ -31,6 +31,25 @@ export type { ModalProps, ConfirmModalProps } from './Modal'
 export { default as Container } from './Container'
 export { default as FontSizeToggle } from './FontSizeToggle'
 
+// Advanced Responsive Components
+export { default as ResponsiveContainer } from './ResponsiveContainer'
+export type { ResponsiveContainerProps } from './ResponsiveContainer'
+
+export { default as ResponsiveGrid } from './ResponsiveGrid'
+export type { ResponsiveGridProps } from './ResponsiveGrid'
+
+// Advanced Interactive Components
+export { default as AdaptiveButton, FloatingActionButton } from './AdaptiveButton'
+export type { AdaptiveButtonProps } from './AdaptiveButton'
+
+// Performance Optimized Components
+export { default as OptimizedImage } from './OptimizedImage'
+export type { OptimizedImageProps } from './OptimizedImage'
+
+// Device Adaptive Components
+export { default as DeviceAdaptiveLayout, ShowOn, AdaptiveStyles } from './DeviceAdaptiveLayout'
+export type { DeviceAdaptiveLayoutProps } from './DeviceAdaptiveLayout'
+
 // Navigation Components
 export { default as NavItem } from './NavItem'
 export type { NavItemProps } from './NavItem'

@@ -331,3 +331,255 @@ body {
 .bg-gradient-radial {
   background-image: radial-gradient(circle, var(--tw-gradient-stops));
 }
+
+/* Advanced Responsive Typography System */
+:root {
+  /* 流動的フォントサイズ - clamp(min, preferred, max) */
+  --hero-size: clamp(2.5rem, 8vw, 6rem);
+  --heading-xl-size: clamp(2rem, 6vw, 4rem);
+  --heading-lg-size: clamp(1.75rem, 5vw, 3rem);
+  --heading-md-size: clamp(1.5rem, 4vw, 2.5rem);
+  --heading-sm-size: clamp(1.25rem, 3vw, 2rem);
+  --body-lg-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  --body-size: clamp(1rem, 2.5vw, 1.125rem);
+  --body-sm-size: clamp(0.875rem, 2vw, 1rem);
+  --caption-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  
+  /* Line heights for readability */
+  --hero-line-height: 1.1;
+  --heading-line-height: 1.3;
+  --body-line-height: 1.6;
+  --body-relaxed-line-height: 1.7; /* シニア向け */
+}
+
+/* Responsive Typography Classes */
+.responsive-hero {
+  font-size: var(--hero-size);
+  line-height: var(--hero-line-height);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.responsive-heading-xl {
+  font-size: var(--heading-xl-size);
+  line-height: var(--heading-line-height);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.responsive-heading-lg {
+  font-size: var(--heading-lg-size);
+  line-height: var(--heading-line-height);
+  font-weight: 600;
+}
+
+.responsive-heading-md {
+  font-size: var(--heading-md-size);
+  line-height: var(--heading-line-height);
+  font-weight: 500;
+}
+
+.responsive-heading-sm {
+  font-size: var(--heading-sm-size);
+  line-height: var(--heading-line-height);
+  font-weight: 500;
+}
+
+.responsive-body-lg {
+  font-size: var(--body-lg-size);
+  line-height: var(--body-line-height);
+}
+
+.responsive-body {
+  font-size: var(--body-size);
+  line-height: var(--body-line-height);
+}
+
+.responsive-body-sm {
+  font-size: var(--body-sm-size);
+  line-height: var(--body-line-height);
+}
+
+.responsive-caption {
+  font-size: var(--caption-size);
+  line-height: var(--body-line-height);
+}
+
+/* Senior Mode Typography (larger and more readable) */
+.senior-mode {
+  --hero-size: clamp(3rem, 10vw, 7rem);
+  --heading-xl-size: clamp(2.5rem, 7vw, 5rem);
+  --heading-lg-size: clamp(2rem, 6vw, 4rem);
+  --heading-md-size: clamp(1.75rem, 5vw, 3rem);
+  --heading-sm-size: clamp(1.5rem, 4vw, 2.5rem);
+  --body-lg-size: clamp(1.375rem, 3vw, 1.625rem);
+  --body-size: clamp(1.125rem, 3vw, 1.375rem);
+  --body-sm-size: clamp(1rem, 2.5vw, 1.25rem);
+  --caption-size: clamp(0.875rem, 2vw, 1.125rem);
+  
+  /* More relaxed line height for seniors */
+  --body-line-height: var(--body-relaxed-line-height);
+}
+
+/* Large Font Mode (intermediate size) */
+.large-font-mode {
+  --hero-size: clamp(2.75rem, 9vw, 6.5rem);
+  --heading-xl-size: clamp(2.25rem, 6.5vw, 4.5rem);
+  --heading-lg-size: clamp(1.875rem, 5.5vw, 3.5rem);
+  --heading-md-size: clamp(1.625rem, 4.5vw, 2.75rem);
+  --heading-sm-size: clamp(1.375rem, 3.5vw, 2.25rem);
+  --body-lg-size: clamp(1.25rem, 2.75vw, 1.5rem);
+  --body-size: clamp(1.0625rem, 2.75vw, 1.25rem);
+  --body-sm-size: clamp(0.9375rem, 2.25vw, 1.125rem);
+  --caption-size: clamp(0.8125rem, 1.75vw, 1rem);
+}
+
+/* High contrast mode for accessibility */
+.high-contrast {
+  --neon-blue: #00e0ff;
+  --neon-purple: #a855f7;
+  --neon-green: #10ff94;
+  --neon-pink: #ff1a9b;
+  --neon-yellow: #ffff33;
+  --neon-cyan: #33ffff;
+}
+
+.high-contrast .neon-text {
+  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+}
+
+/* Touch-friendly sizing for interactive elements */
+@media (hover: none) and (pointer: coarse) {
+  .touch-friendly {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 16px;
+  }
+  
+  .touch-friendly-large {
+    min-height: 56px;
+    min-width: 56px;
+    padding: 16px 20px;
+  }
+}
+
+/* Print-friendly typography */
+@media print {
+  .responsive-hero,
+  .responsive-heading-xl,
+  .responsive-heading-lg,
+  .responsive-heading-md,
+  .responsive-heading-sm {
+    color: #000 !important;
+    text-shadow: none !important;
+  }
+  
+  .responsive-body,
+  .responsive-body-lg,
+  .responsive-body-sm,
+  .responsive-caption {
+    color: #333 !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* Reduced Motion Support */
+.reduced-motion,
+.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.reduced-motion .cyber-button:hover {
+  transform: none !important;
+}
+
+.reduced-motion .neon-text {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .respect-motion-preference {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Adaptive Interaction Styles */
+.adaptive-hover {
+  transition: all 0.2s ease;
+}
+
+/* デスクトップ（ホバー可能デバイス）でのみホバー効果を適用 */
+@media (hover: hover) and (pointer: fine) {
+  .adaptive-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* タッチデバイスではアクティブ状態を強調 */
+@media (hover: none) and (pointer: coarse) {
+  .adaptive-hover:active {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+  
+  /* タッチデバイス専用のフォーカススタイル */
+  .adaptive-focus:focus {
+    outline: 2px solid var(--neon-blue);
+    outline-offset: 2px;
+  }
+}
+
+/* Gesture Support */
+.gesture-enabled {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Scroll Snap for Better Mobile Experience */
+.scroll-snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-snap-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Enhanced Focus Indicators */
+.enhanced-focus:focus {
+  outline: 2px solid var(--neon-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.enhanced-focus:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Safe Area Insets for Mobile Devices */
+.safe-area-padding {
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-margin {
+  margin-top: env(safe-area-inset-top);
+  margin-right: env(safe-area-inset-right);
+  margin-bottom: env(safe-area-inset-bottom);
+  margin-left: env(safe-area-inset-left);
+}

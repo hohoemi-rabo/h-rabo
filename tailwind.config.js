@@ -10,9 +10,20 @@ module.exports = {
       xs: '475px',
       sm: '640px',
       md: '768px',
+      'md-lg': '896px', // タブレット縦向き・小さめデスクトップ
       lg: '1024px',
       xl: '1280px',
       '2xl': '1536px',
+      '3xl': '1920px', // 大画面デスクトップ
+      // 高さベースのブレークポイント
+      'h-sm': { raw: '(min-height: 640px)' },
+      'h-md': { raw: '(min-height: 768px)' },
+      'h-lg': { raw: '(min-height: 1024px)' },
+      // デバイス指向のブレークポイント
+      'touch': { raw: '(hover: none) and (pointer: coarse)' },
+      'no-touch': { raw: '(hover: hover) and (pointer: fine)' },
+      // 高解像度ディスプレイ
+      'retina': { raw: '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)' },
     },
     extend: {
       colors: {
