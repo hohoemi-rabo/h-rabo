@@ -38,20 +38,20 @@ const newsItems = [
 
 export default function NewsSection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 sm:py-20 bg-white">
       <Container>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 sm:mb-12 px-4">
+          <div className="mb-4 md:mb-0">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">
               お知らせ
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-600">
               最新のお知らせや新しいサービスの情報をお届けします
             </p>
           </div>
           <Link
             href="/blog"
-            className="mt-6 md:mt-0 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            className="self-start md:self-auto bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors inline-block"
           >
             すべて見る
           </Link>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Header from '@/components/layouts/Header'
 import Footer from '@/components/layouts/Footer'
+import FontSizeToggle from '@/components/ui/FontSizeToggle'
 import './globals.css'
 
 const geistSans = Geist({
@@ -74,6 +75,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <FontSizeToggle />
         </div>
       </body>
     </html>

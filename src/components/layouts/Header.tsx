@@ -27,10 +27,10 @@ export default function Header() {
             className="flex items-center space-x-2"
             onClick={closeMobileMenu}
           >
-            <div className="text-xl font-bold text-blue-600">
+            <div className="text-lg sm:text-xl font-bold text-blue-600">
               ほほ笑みラボ
             </div>
-            <div className="hidden sm:block text-sm text-gray-600">
+            <div className="hidden xs:block text-xs sm:text-sm text-gray-600">
               パソコン・スマホ
             </div>
           </Link>
