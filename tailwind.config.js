@@ -18,6 +18,31 @@ module.exports = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        // ベースカラー（ダークモード基調）
+        dark: {
+          900: '#0a0a0a', // 最深部
+          800: '#1a1a1a', // 背景
+          700: '#2a2a2a', // カード背景
+          600: '#3a3a3a', // ボーダー
+          500: '#4a4a4a', // インアクティブテキスト
+          400: '#6a6a6a', // セカンダリテキスト
+          300: '#8a8a8a', // ディスエイブルテキスト
+        },
+        // ネオンアクセント
+        neon: {
+          blue: '#00d4ff', // サイバーブルー
+          purple: '#8b5cf6', // エレクトリックパープル  
+          green: '#00ff88', // マトリックスグリーン
+          pink: '#ff0080', // ネオンピンク
+          yellow: '#ffff00', // エレクトリックイエロー
+          cyan: '#00ffff', // サイバーシアン
+        },
+        // グラデーション用
+        gradient: {
+          from: '#0066ff',
+          via: '#8b5cf6', 
+          to: '#ff0080',
+        },
       },
       fontSize: {
         'xs': '0.75rem',    // 12px
@@ -42,6 +67,52 @@ module.exports = {
       maxWidth: {
         '8xl': '88rem',
         '9xl': '96rem',
+      },
+      fontFamily: {
+        'cyber': ['Orbitron', 'monospace'],
+        'futura': ['Futura', 'system-ui', 'sans-serif'],
+        'mono-cyber': ['JetBrains Mono', 'Fira Code', 'monospace'],
+      },
+      boxShadow: {
+        'neon': '0 0 20px rgba(0, 212, 255, 0.5)',
+        'neon-strong': '0 0 40px rgba(0, 212, 255, 0.8)',
+        'glow': '0 0 40px rgba(139, 92, 246, 0.3)',
+        'glow-strong': '0 0 60px rgba(139, 92, 246, 0.6)',
+        'cyber': '0 4px 32px rgba(0, 0, 0, 0.8)',
+        'cyber-inset': 'inset 0 0 20px rgba(0, 212, 255, 0.2)',
+        'neon-pink': '0 0 20px rgba(255, 0, 128, 0.5)',
+        'neon-green': '0 0 20px rgba(0, 255, 136, 0.5)',
+      },
+      animation: {
+        'glow': 'glow 2s ease-in-out infinite alternate',
+        'pulse-neon': 'pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float': 'float 3s ease-in-out infinite',
+      },
+      keyframes: {
+        glow: {
+          '0%': {
+            boxShadow: '0 0 5px rgba(0, 212, 255, 0.5)',
+          },
+          '100%': {
+            boxShadow: '0 0 20px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.6)',
+          },
+        },
+        'pulse-neon': {
+          '0%, 100%': {
+            opacity: '1',
+          },
+          '50%': {
+            opacity: '0.5',
+          },
+        },
+        float: {
+          '0%, 100%': {
+            transform: 'translateY(0px)',
+          },
+          '50%': {
+            transform: 'translateY(-10px)',
+          },
+        },
       },
     },
   },
