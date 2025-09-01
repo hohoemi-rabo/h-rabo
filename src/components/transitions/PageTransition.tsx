@@ -32,6 +32,37 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
   const direction = getDirection(pathname)
 
+  // 講師紹介ページはフェードインアニメーション（テスト用）
+  if (pathname === '/instructor') {
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={pathname}
+          initial={{ 
+            opacity: 0,
+            scale: 0.95
+          }}
+          animate={{ 
+            opacity: 1,
+            scale: 1
+          }}
+          exit={{ 
+            opacity: 0,
+            scale: 0.95
+          }}
+          transition={{
+            duration: 0.5,
+            ease: 'easeOut',
+          }}
+          className="w-full"
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+    )
+  }
+
+  // その他のページは通常のスライドアニメーション
   return (
     <div className="relative">
       <AnimatePresence mode="wait">
