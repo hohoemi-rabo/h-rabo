@@ -12,7 +12,7 @@ import MobileMenu from '@/components/ui/MobileMenu'
 
 const menuItems = [
   { href: '/', label: 'ホーム' },
-  { href: '/about', label: '講師紹介' },
+  { href: '/instructor', label: '講師紹介' },
   { href: '/services', label: 'サービス' },
   { href: '/blog', label: 'ブログ' },
   { href: '/faq', label: 'よくある質問' },

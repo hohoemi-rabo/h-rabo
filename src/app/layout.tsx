@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Orbitron, JetBrains_Mono } from 'next/font/google'
 import Header from '@/components/layouts/Header'
 import Footer from '@/components/layouts/Footer'
 import FontSizeToggle from '@/components/ui/FontSizeToggle'
+import PageTransition from '@/components/transitions/PageTransition'
 import './globals.css'
 
 const geistSans = Geist({
@@ -85,7 +86,11 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} ${jetbrainsMono.variable} antialiased`}>
         <div className="flex min-h-screen flex-col">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            <PageTransition>
+              {children}
+            </PageTransition>
+          </main>
           <Footer />
           <FontSizeToggle />
         </div>
