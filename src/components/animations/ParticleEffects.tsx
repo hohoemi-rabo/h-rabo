@@ -38,11 +38,11 @@ export function ParticleExplosion({
       
       return Array.from({ length: count }, (_, i) => ({
         id: i,
-        angle: (Math.PI * 2 * i) / count + seededRandom(i * 2) * 0.5,
-        distance: distance * (0.5 + seededRandom(i * 3) * 0.5),
+        angle: Math.round(((Math.PI * 2 * i) / count + seededRandom(i * 2) * 0.5) * 1000) / 1000,
+        distance: Math.round(distance * (0.5 + seededRandom(i * 3) * 0.5) * 100) / 100,
         color: colors[Math.floor(seededRandom(i * 5) * colors.length)],
-        scale: 0.5 + seededRandom(i * 7) * 0.5,
-        duration: duration * (0.8 + seededRandom(i * 11) * 0.4),
+        scale: Math.round((0.5 + seededRandom(i * 7) * 0.5) * 100) / 100,
+        duration: Math.round(duration * (0.8 + seededRandom(i * 11) * 0.4) * 100) / 100,
       }))
     },
     [count, colors, distance, duration]
@@ -281,12 +281,12 @@ export function Starfield({
       
       return Array.from({ length: count }, (_, i) => ({
         id: i,
-        x: seededRandom(i * 2) * 100,
-        y: seededRandom(i * 3) * 100,
-        size: seededRandom(i * 5) * 3 + 1,
-        duration: seededRandom(i * 7) * 20 + 10,
-        delay: seededRandom(i * 11) * 5,
-        opacity: seededRandom(i * 13) * 0.5 + 0.5,
+        x: Math.round(seededRandom(i * 2) * 10000) / 100,
+        y: Math.round(seededRandom(i * 3) * 10000) / 100,
+        size: Math.round((seededRandom(i * 5) * 3 + 1) * 100) / 100,
+        duration: Math.round((seededRandom(i * 7) * 20 + 10) * 100) / 100,
+        delay: Math.round(seededRandom(i * 11) * 500) / 100,
+        opacity: Math.round((seededRandom(i * 13) * 0.5 + 0.5) * 100) / 100,
       }))
     },
     [count]
@@ -419,10 +419,10 @@ export function Bubbles({
       
       return Array.from({ length: count }, (_, i) => ({
         id: i,
-        x: seededRandom(i * 2) * 100,
-        size: seededRandom(i * 3) * 20 + 10,
-        duration: seededRandom(i * 5) * 10 + 5,
-        delay: seededRandom(i * 7) * 5,
+        x: Math.round(seededRandom(i * 2) * 10000) / 100,
+        size: Math.round((seededRandom(i * 3) * 20 + 10) * 100) / 100,
+        duration: Math.round((seededRandom(i * 5) * 10 + 5) * 100) / 100,
+        delay: Math.round(seededRandom(i * 7) * 500) / 100,
       }))
     },
     [count]
