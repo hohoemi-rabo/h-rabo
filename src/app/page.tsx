@@ -1,5 +1,4 @@
-import HeroSection from '@/components/features/HeroSection'
-import StructuredData from '@/components/seo/StructuredData'
+import HomePageClient from './HomePageClient'
 import { 
   organizationStructuredData, 
   localBusinessStructuredData, 
@@ -8,12 +7,10 @@ import {
 
 export default function Home() {
   return (
-    <>
-      <StructuredData data={organizationStructuredData} />
-      <StructuredData data={localBusinessStructuredData} />
-      <StructuredData data={serviceStructuredData} />
-      
-      <HeroSection />
-    </>
+    <HomePageClient
+      organizationStructuredData={organizationStructuredData}
+      localBusinessStructuredData={localBusinessStructuredData}
+      serviceStructuredData={serviceStructuredData}
+    />
   )
 }
