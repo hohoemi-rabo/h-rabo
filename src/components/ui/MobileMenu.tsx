@@ -1,13 +1,13 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import NavItem from './NavItem'
-import CTAButton from './CTAButton'
 
 const menuItems = [
   { href: '/', label: 'ホーム' },
-  { href: '/about', label: '講師紹介' },
+  { href: '/instructor', label: '講師紹介' },
   { href: '/services', label: 'サービス' },
   { href: '/blog', label: 'ブログ' },
   { href: '/faq', label: 'よくある質問' },
@@ -74,7 +74,11 @@ export default function MobileMenu({ isOpen, onClose, activeHref }: MobileMenuPr
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ delay: 0.5, duration: 0.3 }}
               >
-                <CTAButton className="w-full justify-center" onClick={onClose} />
+                <Link href="/contact" onClick={onClose}>
+                  <button className="w-full bg-gradient-to-r from-neon-pink to-neon-purple text-white font-cyber font-semibold rounded-lg px-6 py-2.5 text-center hover:scale-105 transition-transform duration-200">
+                    お問い合わせ
+                  </button>
+                </Link>
               </motion.div>
 
               {/* 装飾ライン */}

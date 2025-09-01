@@ -14,7 +14,7 @@ const serviceLinks = [
 ]
 
 const siteLinks = [
-  { text: '講師紹介', href: '/about' },
+  { text: '講師紹介', href: '/instructor' },
   { text: 'ブログ', href: '/blog' },
   { text: 'よくある質問', href: '/faq' },
   { text: 'お問い合わせ', href: '/contact' },

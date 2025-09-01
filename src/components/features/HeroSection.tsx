@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui'
 import Container from '@/components/ui/Container'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { Starfield } from '@/components/animations/ParticleEffects'
@@ -77,20 +78,24 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.9 }}
             >
-              <Button 
-                variant="primary" 
-                size="lg" 
-                className="text-lg px-8 py-4"
-              >
-                無料体験申し込み
-              </Button>
-              <Button 
-                variant="secondary" 
-                size="lg" 
-                className="text-lg px-8 py-4"
-              >
-                サービス詳細
-              </Button>
+              <Link href="/contact">
+                <Button 
+                  variant="primary" 
+                  size="lg" 
+                  className="text-lg px-8 py-4"
+                >
+                  お問い合わせ
+                </Button>
+              </Link>
+              <Link href="/services">
+                <Button 
+                  variant="secondary" 
+                  size="lg" 
+                  className="text-lg px-8 py-4"
+                >
+                  サービス詳細
+                </Button>
+              </Link>
             </motion.div>
           </div>
 
