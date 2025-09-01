@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 interface TypingTextProps {
   text: string
@@ -29,8 +29,13 @@ export default function TypingText({
   const [displayedText, setDisplayedText] = useState('')
   const [isComplete, setIsComplete] = useState(false)
   const [showCursorState, setShowCursorState] = useState(false)
+  const hasStarted = useRef(false)
+  const hasCompleted = useRef(false)
 
   useEffect(() => {
+    if (hasStarted.current) return
+    hasStarted.current = true
+    
     // 遅延後にタイピング開始
     const startTimer = setTimeout(() => {
       setShowCursorState(true)
@@ -38,6 +43,13 @@ export default function TypingText({
 
     return () => clearTimeout(startTimer)
   }, [delay])
+
+  const memoizedOnComplete = useCallback(() => {
+    if (!hasCompleted.current) {
+      hasCompleted.current = true
+      onComplete?.()
+    }
+  }, [onComplete])
 
   useEffect(() => {
     if (!showCursorState) return
@@ -48,14 +60,14 @@ export default function TypingText({
           setDisplayedText(text.slice(0, displayedText.length + 1))
         } else if (!isComplete) {
           setIsComplete(true)
-          onComplete?.()
+          memoizedOnComplete()
         }
       },
       displayedText.length === 0 ? 0 : speed
     )
 
     return () => clearTimeout(timer)
-  }, [displayedText, text, speed, isComplete, onComplete, showCursorState])
+  }, [displayedText, text, speed, isComplete, memoizedOnComplete, showCursorState])
 
   return (
     <motion.span 
