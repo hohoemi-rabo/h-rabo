@@ -39,14 +39,11 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        className={`fixed top-0 z-50 w-full transition-all duration-300 animate-slide-down ${
           isScrolled
             ? 'bg-dark-900/95 border-b border-neon-blue/30 backdrop-blur-md shadow-cyber'
             : 'bg-transparent'
         }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 100 }}
       >
         {/* サイバーグリッド背景 */}
         <div className="cyber-grid absolute inset-0 opacity-20 pointer-events-none" />
