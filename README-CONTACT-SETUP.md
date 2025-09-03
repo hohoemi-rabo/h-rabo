@@ -8,7 +8,13 @@
 2. APIキーを取得
 3. ドメイン認証設定
 
-### 2. Upstash Redis設定（オプション）
+### 2. Supabase データベース設定（推奨）
+
+1. [Supabase](https://supabase.com) でプロジェクト作成
+2. `supabase-setup.sql` を SQL Editor で実行
+3. Project URL と Anon Key を取得
+
+### 3. Upstash Redis設定（オプション）
 
 1. [Upstash](https://upstash.com) でアカウント作成
 2. Redis データベース作成
@@ -22,13 +28,17 @@
 # 必須: Resend API Key
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxx
 
+# 推奨: Supabase (データベース)
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxx
+
 # オプション: Upstash Redis (レート制限用)
 UPSTASH_REDIS_REST_URL=https://xxxxxxxxx.upstash.io
 UPSTASH_REDIS_REST_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # メール設定
 CONTACT_EMAIL_TO=info@hohoemi-lab.com
-CONTACT_EMAIL_FROM=noreply@hohoemi-lab.com
+CONTACT_EMAIL_FROM=noreply@resend.dev
 ```
 
 ## 現在の実装状況
@@ -38,7 +48,7 @@ CONTACT_EMAIL_FROM=noreply@hohoemi-lab.com
 - **フォームバリデーション**: Zodスキーマによる厳密な検証
 - **メール送信**: ResendAPI経由で管理者・顧客双方に送信
 - **レート制限**: Upstash Redis対応（未設定時はメモリベース）
-- **データ保存**: JSONファイルによる履歴保存
+- **データ保存**: Supabase PostgreSQL（フォールバック：JSONファイル）
 - **セキュリティ**: HTMLエスケープ、XSS対策
 - **エラーハンドリング**: 適切なエラーレスポンス
 

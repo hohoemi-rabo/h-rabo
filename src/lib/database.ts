@@ -1,4 +1,4 @@
-// シンプルなJSONベースのデータベース（本格運用ではPrisma + PostgreSQLを推奨）
+// シンプルなJSONファイル保存（Resend専用実装）
 import fs from 'fs/promises'
 import path from 'path'
 
@@ -18,13 +18,20 @@ interface ContactSubmission {
 
 const DB_PATH = path.join(process.cwd(), 'data', 'contacts.json')
 
-export async function saveContactSubmission(data: Omit<ContactSubmission, 'id' | 'createdAt' | 'status'>) {
+export async function saveContactSubmission(data: {
+  name: string
+  furigana?: string
+  email: string
+  phone: string
+  inquiryType: string
+  subject: string
+  message: string
+  ip?: string
+}) {
   try {
-    // データディレクトリを作成
     const dataDir = path.dirname(DB_PATH)
     await fs.mkdir(dataDir, { recursive: true })
 
-    // 既存データを読み込み
     let submissions: ContactSubmission[] = []
     try {
       const fileContent = await fs.readFile(DB_PATH, 'utf-8')
@@ -33,7 +40,6 @@ export async function saveContactSubmission(data: Omit<ContactSubmission, 'id' |
       // ファイルが存在しない場合は空配列
     }
 
-    // 新しいデータを追加
     const newSubmission: ContactSubmission = {
       ...data,
       id: generateId(),
@@ -41,9 +47,7 @@ export async function saveContactSubmission(data: Omit<ContactSubmission, 'id' |
       status: 'new'
     }
 
-    submissions.unshift(newSubmission) // 新しいものを先頭に
-
-    // データを保存
+    submissions.unshift(newSubmission)
     await fs.writeFile(DB_PATH, JSON.stringify(submissions, null, 2), 'utf-8')
 
     return newSubmission
@@ -81,5 +85,5 @@ export async function updateSubmissionStatus(id: string, status: ContactSubmissi
 }
 
 function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2)
+  return Date.now().toString(36) + Math.random().toString(36).substring(2)
 }

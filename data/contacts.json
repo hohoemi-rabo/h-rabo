@@ -1,0 +1,28 @@
+[
+  {
+    "name": "正しいメールテスト",
+    "furigana": "",
+    "email": "test@example.com",
+    "phone": "090-1234-5678",
+    "inquiryType": "体験レッスンについて",
+    "subject": "正しいメールアドレスでのテスト",
+    "message": "rabo.hohoemi@gmail.com 宛てにメールが送信されるかテストしています。",
+    "ip": "::ffff:127.0.0.1",
+    "id": "mf3s88atl87f3bbhqu",
+    "createdAt": "2025-09-03T09:35:56.933Z",
+    "status": "new"
+  },
+  {
+    "name": "Resendテスト",
+    "furigana": "",
+    "email": "test@example.com",
+    "phone": "090-1234-5678",
+    "inquiryType": "体験レッスンについて",
+    "subject": "Resend動作確認",
+    "message": "ResendAPIでメール送信がきちんと動作するかテストしています。",
+    "ip": "::ffff:127.0.0.1",
+    "id": "mf3s0th7oza98xi1s6l",
+    "createdAt": "2025-09-03T09:30:11.131Z",
+    "status": "new"
+  }
+]

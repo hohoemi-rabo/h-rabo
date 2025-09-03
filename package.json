@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
+    "@planetscale/database": "^1.19.0",
     "@react-three/drei": "^10.7.4",
     "@react-three/fiber": "^9.3.0",
+    "@supabase/supabase-js": "^2.57.0",
     "@upstash/ratelimit": "^2.0.6",
     "@upstash/redis": "^1.35.3",
     "clsx": "^2.1.1",
