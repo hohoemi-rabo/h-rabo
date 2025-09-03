@@ -36,6 +36,13 @@ class InstagramService {
 
   constructor() {
     this.accessToken = process.env.INSTAGRAM_ACCESS_TOKEN || ''
+    
+    // デバッグ用ログ（本番環境でも確認できるようにconsole.logを使用）
+    if (!this.accessToken) {
+      console.log('[Instagram Service] Warning: INSTAGRAM_ACCESS_TOKEN is not set')
+    } else {
+      console.log('[Instagram Service] Access token is configured (length:', this.accessToken.length, ')')
+    }
   }
 
   async getUser(): Promise<InstagramUser | null> {
@@ -76,7 +83,16 @@ class InstagramService {
 
       return response.data.data || []
     } catch (error) {
-      console.error('Instagram media fetch error:', error)
+      if (axios.isAxiosError(error)) {
+        console.error('[Instagram API] Media fetch error:', {
+          status: error.response?.status,
+          statusText: error.response?.statusText,
+          data: error.response?.data,
+          message: error.message
+        })
+      } else {
+        console.error('[Instagram API] Media fetch error:', error)
+      }
       return []
     }
   }
@@ -132,16 +148,24 @@ const CACHE_DURATION = 30 * 60 * 1000 // 30分
 export async function getCachedInstagramData() {
   const now = Date.now()
   
+  console.log('[getCachedInstagramData] Starting data fetch...')
+  
   // キャッシュが有効な場合はキャッシュを返す
   if (cachedData && (now - cachedData.timestamp) < CACHE_DURATION) {
+    console.log('[getCachedInstagramData] Returning cached data')
     return cachedData
   }
 
+  console.log('[getCachedInstagramData] Cache expired or not available, fetching new data...')
+  
   // 新しいデータを取得
   const [media, user] = await Promise.all([
     instagramService.getMedia(6),
     instagramService.getUser(),
   ])
+
+  console.log('[getCachedInstagramData] Fetched media count:', media.length)
+  console.log('[getCachedInstagramData] User info:', user ? 'Available' : 'Not available')
 
   // キャッシュを更新
   cachedData = {
