@@ -2,19 +2,8 @@
 
 import { motion } from 'framer-motion'
 import HeroSection from '@/components/features/HeroSection'
-import StructuredData from '@/components/seo/StructuredData'
 
-interface HomePageClientProps {
-  organizationStructuredData: any
-  localBusinessStructuredData: any
-  serviceStructuredData: any
-}
-
-export default function HomePageClient({ 
-  organizationStructuredData,
-  localBusinessStructuredData,
-  serviceStructuredData
-}: HomePageClientProps) {
+export default function HomePageClient() {
   return (
     <motion.div 
       initial={{ 
@@ -30,9 +19,6 @@ export default function HomePageClient({
         ease: 'easeOut',
       }}
     >
-      <StructuredData data={organizationStructuredData} />
-      <StructuredData data={localBusinessStructuredData} />
-      <StructuredData data={serviceStructuredData} />
       
       <HeroSection />
     </motion.div>

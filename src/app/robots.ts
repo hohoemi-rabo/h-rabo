@@ -1,12 +1,16 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://hohoemi-lab.com'
+  
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/privacy', '/_next/', '/api/'],
-    },
-    sitemap: 'https://hohoemi-lab.com/sitemap.xml',
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/_next/', '/admin/'],
+      },
+    ],
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }

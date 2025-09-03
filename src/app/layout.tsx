@@ -4,6 +4,7 @@ import Header from '@/components/layouts/Header'
 import Footer from '@/components/layouts/Footer'
 import FontSizeToggle from '@/components/ui/FontSizeToggle'
 import PageTransition from '@/components/transitions/PageTransition'
+import { LocalBusinessSchema } from '@/components/seo/StructuredData'
 import './globals.css'
 
 const geistSans = Geist({
@@ -84,6 +85,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} ${jetbrainsMono.variable} antialiased`}>
+        <LocalBusinessSchema />
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">

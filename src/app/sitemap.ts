@@ -1,21 +1,15 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://hohoemi-lab.com'
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://hohoemi-lab.com'
   
-  // 静的ページ
+  // 静的ページ（現在のページ構成に合わせて更新）
   const staticPages = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'weekly' as const,
       priority: 1,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/services`,
@@ -24,10 +18,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/instructor`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      changeFrequency: 'monthly' as const,
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/voice`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/access`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/instagram`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
@@ -49,14 +61,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // 動的ページ（ブログ記事など）
-  // 現在は仮のブログ記事ID
-  const blogPosts = [1, 2, 3, 4].map((id) => ({
-    url: `${baseUrl}/blog/${id}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.5,
-  }))
+  // ブログは将来実装予定のため、現在はコメントアウト
+  // const blogPosts = []
 
-  return [...staticPages, ...blogPosts]
+  return staticPages
 }
