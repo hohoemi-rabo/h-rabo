@@ -65,8 +65,6 @@ export default function DynamicBackground({
           rgba(139, 92, 246, ${0.1 * intensity}) 100%
         )`,
         y: backgroundY,
-      }}
-      animate={{
         rotate: interactive ? timeBasedRotation : 0,
         scale: pulseScale,
       }}
@@ -189,13 +187,7 @@ export default function DynamicBackground({
             transparent 70%
           )`,
           scale,
-        }}
-        animate={{
           rotate: timeBasedRotation,
-        }}
-        transition={{
-          duration: 0.1,
-          ease: 'linear',
         }}
       />
     </div>

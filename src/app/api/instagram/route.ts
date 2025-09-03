@@ -74,7 +74,7 @@ export async function GET(request: NextRequest) {
 }
 
 // POST method for manual sync/refresh
-export async function POST(request: NextRequest) {
+export async function POST(_request: NextRequest) {
   try {
     // 手動同期トリガー
     console.log('Manual Instagram sync triggered')

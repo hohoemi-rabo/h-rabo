@@ -11,6 +11,7 @@ interface MagneticButtonProps {
   onClick?: () => void
   variant?: 'primary' | 'secondary' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
+  onMouseMove?: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
 /**
@@ -25,6 +26,7 @@ export default function MagneticButton({
   onClick,
   variant = 'primary',
   size = 'md',
+  onMouseMove,
 }: MagneticButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [isHovered, setIsHovered] = useState(false)
@@ -82,6 +84,11 @@ export default function MagneticButton({
       
       mouseX.set(e.clientX - centerX)
       mouseY.set(e.clientY - centerY)
+    }
+
+    // 外部のonMouseMoveハンドラがあれば呼び出し
+    if (onMouseMove) {
+      onMouseMove(e)
     }
   }
 

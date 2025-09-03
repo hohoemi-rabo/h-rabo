@@ -47,7 +47,7 @@ export default function ParticleNetwork({
 }: ParticleNetworkProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number>(0)
   const mouseRef = useRef({ x: 0, y: 0 })
   
   const [isVisible, setIsVisible] = useState(true)
@@ -164,11 +164,11 @@ export default function ParticleNetwork({
   // FPS監視
   const monitorPerformance = useCallback(() => {
     let frameCount = 0
-    let lastTime = performance.now()
+    let lastTime = window.performance.now()
 
     const checkFPS = () => {
       frameCount++
-      const currentTime = performance.now()
+      const currentTime = window.performance.now()
       
       if (currentTime - lastTime >= 1000) {
         const fps = Math.round((frameCount * 1000) / (currentTime - lastTime))

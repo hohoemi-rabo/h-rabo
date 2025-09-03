@@ -73,7 +73,7 @@ export default function PerformanceMonitor({
   })
 
   const [isVisible, setIsVisible] = useState(false)
-  const animationFrameRef = useRef<number>()
+  const animationFrameRef = useRef<number>(0)
   const lastTimeRef = useRef<number>(performance.now())
   const frameCountRef = useRef<number>(0)
   const renderTimesRef = useRef<number[]>([])

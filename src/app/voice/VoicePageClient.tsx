@@ -108,7 +108,7 @@ export default function VoicePageClient({ testimonials, stats }: VoicePageClient
                   {/* コメント */}
                   <div className="lg:col-span-3">
                     <blockquote className="text-gray-300 text-lg leading-relaxed mb-6">
-                      "{testimonial.comment}"
+                      &quot;{testimonial.comment}&quot;
                     </blockquote>
                     
                     {/* 習得スキル */}
