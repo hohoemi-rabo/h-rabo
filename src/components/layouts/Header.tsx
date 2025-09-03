@@ -14,7 +14,7 @@ const menuItems = [
   { href: '/', label: 'ホーム' },
   { href: '/instructor', label: '講師紹介' },
   { href: '/services', label: 'サービス' },
-  { href: '/blog', label: 'ブログ' },
+  { href: '/instagram', label: 'Instagram' },
   { href: '/faq', label: 'よくある質問' },
 ]
 
