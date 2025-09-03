@@ -22,7 +22,10 @@ export default function PageTransition({ children }: PageTransitionProps) {
     '/voice', 
     '/access',
     '/blog',
-    '/faq'
+    '/faq',
+    '/instructor',
+    '/contact',
+    '/instagram'
   ]
 
   // 分離戦略ページはPageTransitionのアニメーションをスキップ

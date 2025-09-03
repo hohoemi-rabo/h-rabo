@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { motion } from 'framer-motion'
 import * as z from 'zod'
 
 // バリデーションスキーマ
@@ -97,7 +98,16 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ 
+        duration: 0.5, 
+        ease: 'easeOut' 
+      }}
+      className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+    >
       <Container size="xl">
         <div className="py-20">
           {/* ヘッダー */}
@@ -406,6 +416,6 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
           </div>
         </div>
       </Container>
-    </div>
+    </motion.div>
   )
 }
