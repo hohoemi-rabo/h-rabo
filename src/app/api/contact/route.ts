@@ -4,7 +4,15 @@ import { Resend } from 'resend'
 import { checkRateLimit } from '@/lib/ratelimit'
 import { saveContactSubmission } from '@/lib/database'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Resendインスタンスを遅延初期化
+let resend: Resend | null = null
+
+function getResendClient() {
+  if (!resend && process.env.RESEND_API_KEY) {
+    resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resend
+}
 
 const contactSchema = z.object({
   name: z.string().min(1).max(50),
@@ -64,8 +72,23 @@ export async function POST(request: NextRequest) {
       <p style="font-size: 12px; color: #666;">送信日時: ${new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}</p>
     `
 
+    // Resendクライアントを取得
+    const resendClient = getResendClient()
+    
+    if (!resendClient) {
+      console.warn('Resend API key not configured, skipping email notification')
+      // APIキーが設定されていない場合でも、フォーム送信は成功扱いにする
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'お問い合わせを受け付けました（メール通知は無効）',
+        },
+        { status: 200 }
+      )
+    }
+
     // 管理者宛メール
-    await resend.emails.send({
+    await resendClient.emails.send({
       from: process.env.CONTACT_EMAIL_FROM || 'noreply@hohoemi-lab.com',
       to: [process.env.CONTACT_EMAIL_TO || 'info@hohoemi-lab.com'],
       subject: `[ホームページお問い合わせ] ${sanitizedData.subject}`,
@@ -74,7 +97,7 @@ export async function POST(request: NextRequest) {
     })
 
     // 自動返信メール
-    await resend.emails.send({
+    await resendClient.emails.send({
       from: process.env.CONTACT_EMAIL_FROM || 'noreply@hohoemi-lab.com',
       to: [sanitizedData.email],
       subject: 'お問い合わせありがとうございます - パソコン・スマホ ほほ笑みラボ',
