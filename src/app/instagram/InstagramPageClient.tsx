@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Heart, MessageCircle, Share, ExternalLink, Image as ImageIcon } from 'lucide-react'
+import { Heart, MessageCircle, Share, ExternalLink, Image as ImageIcon, Play, Video } from 'lucide-react'
 
 interface InstagramPost {
   id: string
@@ -9,6 +9,8 @@ interface InstagramPost {
   caption: string
   likes: number
   createdAt: string
+  mediaType?: 'IMAGE' | 'VIDEO' | 'CAROUSEL_ALBUM'
+  permalink?: string
 }
 
 interface AccountInfo {
@@ -70,8 +72,8 @@ export default function InstagramPageClient({ posts, accountInfo }: InstagramPag
               <h2 className="text-3xl font-bold text-white mb-2">{accountInfo.displayName}</h2>
               <p className="text-gray-400 mb-4">@{accountInfo.username}</p>
               
-              {/* Stats */}
-              <div className="flex justify-center md:justify-start gap-8 mb-4">
+              {/* Stats - コメントアウト（Instagram Basic Display APIでは取得不可）*/}
+              {/* <div className="flex justify-center md:justify-start gap-8 mb-4">
                 <div className="text-center">
                   <p className="text-2xl font-bold text-white">{accountInfo.posts}</p>
                   <p className="text-gray-400 text-sm">投稿</p>
@@ -84,7 +86,7 @@ export default function InstagramPageClient({ posts, accountInfo }: InstagramPag
                   <p className="text-2xl font-bold text-white">{accountInfo.following}</p>
                   <p className="text-gray-400 text-sm">フォロー中</p>
                 </div>
-              </div>
+              </div> */}
 
               {/* Bio */}
               <p className="text-gray-300 whitespace-pre-line mb-4">{accountInfo.bio}</p>
@@ -117,13 +119,47 @@ export default function InstagramPageClient({ posts, accountInfo }: InstagramPag
                 className="group"
               >
                 <div className="bg-black/40 backdrop-blur-lg rounded-xl border border-gray-800 overflow-hidden hover:border-purple-500/50 transition-all duration-300">
-                  {/* Image */}
+                  {/* Media */}
                   <div className="relative aspect-square overflow-hidden">
-                    <img
-                      src={post.imageUrl}
-                      alt={`Instagram post ${post.id}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+                    {post.mediaType === 'VIDEO' ? (
+                      <div className="relative w-full h-full">
+                        <video
+                          src={post.imageUrl}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          muted
+                          loop
+                          playsInline
+                          onMouseEnter={(e) => e.currentTarget.play()}
+                          onMouseLeave={(e) => e.currentTarget.pause()}
+                        />
+                        {/* Play Icon Overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <div className="bg-black/50 rounded-full p-3">
+                            <Play className="w-8 h-8 text-white" />
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <img
+                        src={post.imageUrl}
+                        alt={`Instagram post ${post.id}`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    )}
+                    
+                    {/* Media Type Indicator */}
+                    <div className="absolute top-3 right-3">
+                      {post.mediaType === 'VIDEO' && (
+                        <div className="bg-black/60 rounded-full p-2">
+                          <Video className="w-4 h-4 text-white" />
+                        </div>
+                      )}
+                      {post.mediaType === 'CAROUSEL_ALBUM' && (
+                        <div className="bg-black/60 rounded-full p-2">
+                          <ImageIcon className="w-4 h-4 text-white" />
+                        </div>
+                      )}
+                    </div>
                     
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
