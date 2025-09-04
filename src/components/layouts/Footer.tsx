@@ -168,7 +168,7 @@ export default function Footer() {
                 />
                 <div className="bg-dark-700/30 rounded-lg p-3 border border-dark-600">
                   <p className="font-futura text-xs text-gray-400">
-                    営業時間: 平日 9:00-17:00
+                    営業時間: 平日 10:00-18:00
                     <br />
                     <span className="text-neon-blue">土日はお休み（電話対応可能！）</span>
                   </p>
