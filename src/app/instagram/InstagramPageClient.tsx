@@ -217,7 +217,7 @@ export default function InstagramPageClient({ posts, accountInfo }: InstagramPag
           className="text-center mt-12"
         >
           <a
-            href="https://instagram.com/hohoemi_lab"
+            href="https://www.instagram.com/hohoemi.rabo/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"

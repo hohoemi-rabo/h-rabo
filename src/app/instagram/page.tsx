@@ -37,11 +37,11 @@ async function getInstagramData() {
       user: data.user ? {
         username: data.user.username,
         displayName: 'パソコン・スマホ ほほ笑みラボ',
-        bio: '長野県飯田市のパソコン・スマホ教室\n📍飯田市上郷飯沼\n📞 090-5646-5670\n⏰ 10:00-18:00（水・日定休）',
+        bio: '長野県飯田市のパソコン・スマホ教室\n📍飯田市上郷飯沼\n📞 090-5646-5670\n⏰ 10:00-18:00（土日定休）',
         posts: data.user.media_count,
         followers: 342,
         following: 89,
-        website: 'https://hohoemi-lab.com'
+        website: 'https://hohoemi-rabo.com'
       } : null
     }
   } catch (error) {
@@ -96,11 +96,11 @@ async function getInstagramData() {
       user: {
         username: 'hohoemi_lab',
         displayName: 'パソコン・スマホ ほほ笑みラボ',
-        bio: '長野県飯田市のパソコン・スマホ教室\n📍飯田市上郷飯沼\n📞 090-5646-5670\n⏰ 10:00-18:00（水・日定休）',
+        bio: '長野県飯田市のパソコン・スマホ教室\n📍飯田市上郷飯沼\n📞 090-5646-5670\n⏰ 10:00-18:00（土日定休・電話対応可能）',
         posts: 156,
         followers: 342,
         following: 89,
-        website: 'https://hohoemi-lab.com'
+        website: 'https://hohoemi-rabo.com'
       }
     }
   }
@@ -113,11 +113,11 @@ export default async function InstagramPage() {
   const defaultAccountInfo = {
     username: 'hohoemi_lab',
     displayName: 'パソコン・スマホ ほほ笑みラボ',
-    bio: '長野県飯田市のパソコン・スマホ教室\n📍飯田市上郷飯沼\n📞 090-5646-5670\n⏰ 10:00-18:00（水・日定休）',
+    bio: '長野県飯田市のパソコン・スマホ教室\n📍飯田市上郷飯沼\n📞 090-5646-5670\n⏰ 10:00-18:00（土日定休・電話対応可能）',
     posts: 156,
     followers: 342,
     following: 89,
-    website: 'https://hohoemi-lab.com'
+    website: 'https://hohoemi-rabo.com'
   }
   
   return <InstagramPageClient posts={data.media} accountInfo={data.user || defaultAccountInfo} />
