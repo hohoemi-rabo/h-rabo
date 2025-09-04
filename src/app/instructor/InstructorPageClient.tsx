@@ -3,6 +3,7 @@
 import Container from '@/components/ui/Container'
 import { Button } from '@/components/ui'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function InstructorPageClient() {
@@ -50,13 +51,14 @@ export default function InstructorPageClient() {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="relative"
               >
-                <div className="aspect-square bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-xl flex items-center justify-center border border-white/10">
-                  <div className="text-center">
-                    <div className="w-24 h-24 bg-neon-blue/30 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-3xl">👨‍🏫</span>
-                    </div>
-                    <p className="text-gray-400">講師画像</p>
-                  </div>
+                <div className="relative aspect-square bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-xl overflow-hidden border border-white/10">
+                  <Image
+                    src="/images/instructor.png"
+                    alt="講師の写真"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
               </motion.div>
 
@@ -85,14 +87,13 @@ export default function InstructorPageClient() {
                   </p>
                 </div>
 
-                {/* 資格・経歴 */}
+                {/* 経歴 */}
                 <div className="space-y-3">
-                  <h3 className="text-lg font-semibold text-neon-blue">資格・経歴</h3>
+                  <h3 className="text-lg font-semibold text-neon-blue">経歴</h3>
                   <ul className="space-y-2 text-gray-300">
-                    <li>・Microsoft認定トレーナー</li>
-                    <li>・情報処理技術者試験合格</li>
-                    <li>・IT企業での実務経験15年</li>
-                    <li>・パソコン教室指導歴8年</li>
+                    <li>・株式会社SEGAにてゲーム開発に従事</li>
+                    <li>・株式会社リコー本社での業務経験</li>
+                    <li>・富士通パソコン教室での指導経験</li>
                   </ul>
                 </div>
               </motion.div>
@@ -113,7 +114,7 @@ export default function InstructorPageClient() {
                   'Windows基本操作',
                   'スマートフォン活用',
                   'インターネット利用',
-                  'ビジネス向けIT',
+                  '職場のIT活用',
                 ].map((skill, index) => (
                   <motion.div
                     key={skill}

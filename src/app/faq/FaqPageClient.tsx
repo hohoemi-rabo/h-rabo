@@ -10,6 +10,7 @@ interface FaqItem {
   question: string
   answer: string
   details: string[]
+  contactLink?: boolean
 }
 
 interface FaqCategory {
@@ -124,7 +125,7 @@ export default function FaqPageClient({ faqCategories }: FaqPageClientProps) {
           </div>
 
           {/* お問い合わせCTA */}
-          <div className="bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10 rounded-xl p-8 text-center mb-12 border border-white/10">
+          <div className="bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10 rounded-xl p-8 text-center mb-12 border border-white/10 mt-16">
             <div className="text-4xl mb-4">❓</div>
             <h3 className="text-2xl font-cyber font-bold text-white mb-4">
               他にもご質問がございますか？

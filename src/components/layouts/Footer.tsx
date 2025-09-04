@@ -5,6 +5,7 @@ import Container from '@/components/ui/Container'
 import ContactItem from '@/components/ui/ContactItem'
 import FooterLink from '@/components/ui/FooterLink'
 import SocialIcon from '@/components/ui/SocialIcon'
+import { Icon } from '@/components/ui'
 
 const serviceLinks = [
   'シニア向けレッスン',
@@ -15,7 +16,7 @@ const serviceLinks = [
 
 const siteLinks = [
   { text: '講師紹介', href: '/instructor' },
-  { text: 'ブログ', href: '/blog' },
+  { text: 'Instagram', href: '/instagram' },
   { text: 'よくある質問', href: '/faq' },
   { text: 'お問い合わせ', href: '/contact' },
 ]
@@ -56,18 +57,31 @@ export default function Footer() {
               </div>
 
               <div className="space-y-3">
-                <ContactItem 
-                  icon="location" 
-                  text="〒395-0002 長野県飯田市上郷飯沼2640-1" 
-                />
+                <div className="flex items-start space-x-3">
+                  <div className="text-neon-blue">
+                    <Icon name="location" size="sm" glowing />
+                  </div>
+                  <div className="font-futura text-sm text-gray-300 leading-relaxed">
+                    <div>〒395-0002</div>
+                    <div>長野県飯田市上郷飯沼2640-1</div>
+                  </div>
+                </div>
                 <ContactItem 
                   icon="phone" 
                   text="090-5646-5670" 
                 />
-                <ContactItem 
-                  icon="email" 
-                  text="お問い合わせは随時対応" 
-                />
+                <div className="flex items-start space-x-3">
+                  <div className="text-neon-blue">
+                    <Icon name="email" size="sm" glowing />
+                  </div>
+                  <motion.a 
+                    href="/contact"
+                    className="font-futura text-sm text-gray-300 leading-relaxed hover:text-neon-blue transition-colors cursor-pointer"
+                    whileHover={{ x: 5 }}
+                  >
+                    お問い合わせは随時対応
+                  </motion.a>
+                </div>
               </div>
             </motion.div>
 
@@ -133,22 +147,16 @@ export default function Footer() {
               {/* ソーシャルアイコン */}
               <div className="flex space-x-4">
                 <SocialIcon 
-                  icon="network" 
-                  href="#" 
-                  color="neon-blue"
-                  label="Twitter" 
-                />
-                <SocialIcon 
-                  icon="shield" 
-                  href="#" 
-                  color="neon-purple"
-                  label="Facebook" 
-                />
-                <SocialIcon 
-                  icon="cpu" 
-                  href="#" 
+                  icon="instagram" 
+                  href="https://www.instagram.com/hohoemi.rabo/" 
                   color="neon-pink"
                   label="Instagram" 
+                />
+                <SocialIcon 
+                  icon="facebook" 
+                  href="https://www.facebook.com/hohoemi.rabo" 
+                  color="neon-blue"
+                  label="Facebook" 
                 />
               </div>
 
@@ -162,7 +170,7 @@ export default function Footer() {
                   <p className="font-futura text-xs text-gray-400">
                     営業時間: 平日 9:00-17:00
                     <br />
-                    （土日・祝日はお休み）
+                    <span className="text-neon-blue">土日はお休み（電話対応可能！）</span>
                   </p>
                 </div>
               </div>

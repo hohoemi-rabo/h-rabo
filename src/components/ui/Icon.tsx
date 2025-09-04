@@ -134,6 +134,20 @@ const icons = {
       <path d="M18.36 6.64a9 9 0 1 1-12.73 0" strokeWidth={2} fill="none" />
       <line x1="12" y1="2" x2="12" y2="12" strokeWidth={2} />
     </>
+  ),
+
+  // Social Media icons
+  instagram: (
+    <>
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" strokeWidth={2} fill="none" />
+      <circle cx="12" cy="12" r="3" strokeWidth={2} fill="none" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+    </>
+  ),
+  facebook: (
+    <>
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" strokeWidth={2} fill="none" />
+    </>
   )
 }
 

@@ -83,6 +83,7 @@ module.exports = {
         'cyber': ['Orbitron', 'monospace'],
         'futura': ['Futura', 'system-ui', 'sans-serif'],
         'mono-cyber': ['JetBrains Mono', 'Fira Code', 'monospace'],
+        'rajdhani': ['var(--font-rajdhani)', 'sans-serif'],
       },
       boxShadow: {
         'neon': '0 0 20px rgba(0, 212, 255, 0.5)',

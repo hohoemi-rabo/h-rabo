@@ -365,7 +365,7 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
                 <ul className="space-y-2 text-gray-300 text-sm">
                   <li>・お返事まで1-2営業日お時間をいただく場合があります</li>
                   <li>・緊急のお問い合わせは直接お電話（090-5646-5670）にてご連絡ください</li>
-                  <li>・営業時間: 月火木金 10:00-18:00、土 10:00-16:00（水日定休）</li>
+                  <li>・営業時間: 平日 10:00-18:00（土日定休、電話対応は可能）</li>
                   <li>・個人情報は適切に管理し、お問い合わせ対応以外の目的で使用いたしません</li>
                 </ul>
               </div>

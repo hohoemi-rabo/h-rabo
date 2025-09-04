@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Orbitron, JetBrains_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Orbitron, JetBrains_Mono, Rajdhani } from 'next/font/google'
 import Header from '@/components/layouts/Header'
 import Footer from '@/components/layouts/Footer'
 import FontSizeToggle from '@/components/ui/FontSizeToggle'
@@ -27,6 +27,12 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-mono-cyber',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
+})
+
+const rajdhani = Rajdhani({
+  variable: '--font-rajdhani',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -84,7 +90,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} ${jetbrainsMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} ${jetbrainsMono.variable} ${rajdhani.variable} antialiased`}>
         <LocalBusinessSchema />
         <div className="flex min-h-screen flex-col">
           <Header />

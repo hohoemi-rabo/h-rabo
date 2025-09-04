@@ -133,7 +133,7 @@ export default function VoicePageClient({ testimonials, stats }: VoicePageClient
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button variant="primary" size="lg">
-                📞 無料体験申し込み
+                📞 電話で相談する
               </Button>
               <Button variant="secondary" size="lg">
                 💬 お問い合わせ

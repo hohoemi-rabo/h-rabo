@@ -98,9 +98,11 @@ export default function ServicesPageClient({
 
                   {/* CTAボタン */}
                   <div className="mt-8 text-center">
-                    <Button variant="secondary" size="md" className="w-full">
-                      詳細・お申し込み
-                    </Button>
+                    <Link href="/contact">
+                      <Button variant="secondary" size="md" className="w-full">
+                        詳細・お申し込み
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               ))}

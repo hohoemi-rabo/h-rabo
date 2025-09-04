@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 const businessHours = [
   { day: '月曜日', time: '10:00 - 18:00', status: 'open' },
   { day: '火曜日', time: '10:00 - 18:00', status: 'open' },
-  { day: '水曜日', time: '定休日', status: 'closed' },
+  { day: '水曜日', time: '10:00 - 18:00', status: 'open' },
   { day: '木曜日', time: '10:00 - 18:00', status: 'open' },
   { day: '金曜日', time: '10:00 - 18:00', status: 'open' },
-  { day: '土曜日', time: '10:00 - 16:00', status: 'open' },
-  { day: '日曜日', time: '定休日', status: 'closed' },
+  { day: '土曜日', time: '定休日（状況により対応可能）', status: 'closed' },
+  { day: '日曜日', time: '定休日（状況により対応可能）', status: 'closed' },
 ]
 
 const accessMethods = [
@@ -50,9 +50,9 @@ const contactInfo = [
   {
     icon: '📧',
     label: 'メール',
-    value: 'info@hohoemi-lab.com',
+    value: 'rabo.hohoemi@gmail.com',
     description: '24時間受付中',
-    action: 'mailto:info@hohoemi-lab.com',
+    action: 'mailto:rabo.hohoemi@gmail.com',
   },
   {
     icon: '📍',

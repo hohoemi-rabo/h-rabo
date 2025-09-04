@@ -30,7 +30,7 @@ export default function HeroSection() {
           {/* メインタイトル */}
           <div className="space-y-4 sm:space-y-6">
             <motion.h1
-              className="font-cyber font-bold leading-tight"
+              className="font-rajdhani font-bold leading-tight tracking-wide"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -110,27 +110,9 @@ export default function HeroSection() {
 
         </div>
 
-        {/* スクロール指示（グリッドの外に配置） */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
-        >
-          <div className="flex flex-col items-center space-y-2 text-gray-400">
-            <span className="text-sm font-futura">SCROLL</span>
-            <div className="w-6 h-10 border-2 border-neon-blue/50 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-neon-blue rounded-full mt-2" />
-            </div>
-          </div>
-        </motion.div>
       </Container>
 
-      {/* 浮遊する装飾要素（静的） */}
-      <div className="absolute top-1/4 left-10 w-4 h-4 bg-neon-pink rounded-full opacity-60" />
-      <div className="absolute top-1/3 right-10 w-3 h-3 bg-neon-green rounded-full opacity-60" />
-      <div className="absolute bottom-1/4 left-1/4 w-2 h-2 bg-neon-cyan rounded-full opacity-60" />
+
 
     </section>
   )

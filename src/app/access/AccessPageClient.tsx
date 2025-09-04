@@ -175,23 +175,40 @@ export default function AccessPageClient({
             </div>
           </div>
 
-          {/* 地図エリア（プレースホルダー） */}
+          {/* 地図エリア */}
           <div className="mb-16">
             <h2 className="text-3xl font-cyber font-bold text-center text-white mb-8">
               所在地
             </h2>
             
-            <div className="bg-dark-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-8 text-center">
-              <div className="aspect-video bg-dark-700/50 rounded-lg flex items-center justify-center mb-6">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">🗺️</div>
-                  <p className="text-white font-semibold mb-2">Google Mapsで確認</p>
-                  <p className="text-gray-400">〒395-0002 長野県飯田市上郷飯沼2640-1</p>
-                </div>
+            <div className="bg-dark-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="aspect-video rounded-lg overflow-hidden mb-6">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3247.131272669226!2d137.84789097524333!3d35.525753538500076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601c9a2377337c89%3A0xfa0a289de6b8cfcd!2z44CSMzk1LTAwMDIg6ZW36YeO55yM6aOv55Sw5biC5LiK6YO36aOv5rK877yS77yW77yU77yQ!5e0!3m2!1sja!2sjp!4v1756978677684!5m2!1sja!2sjp"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="ほほ笑みラボの所在地"
+                />
               </div>
-              <Button variant="primary" size="lg">
-                📍 Google Mapsで開く
-              </Button>
+              
+              <div className="text-center">
+                <p className="text-white font-semibold mb-2">📍 〒395-0002 長野県飯田市上郷飯沼2640-1</p>
+                <p className="text-gray-400 mb-4">専用駐車場完備（無料）</p>
+                
+                <a
+                  href="https://www.google.com/maps/search/〒395-0002+長野県飯田市上郷飯沼2640-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="primary" size="lg">
+                    📍 Google Mapsで開く
+                  </Button>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -201,7 +218,7 @@ export default function AccessPageClient({
               まずはお気軽にご相談ください
             </h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              無料体験レッスンも実施中！<br />
+              無料相談いつでも受付中！<br />
               あなたのペースに合わせたIT学習をサポートいたします。
             </p>
             
