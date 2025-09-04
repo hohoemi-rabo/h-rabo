@@ -143,7 +143,7 @@ export const instagramService = new InstagramService()
 
 // キャッシュ機能付きデータ取得
 let cachedData: { media: InstagramMedia[], user: InstagramUser | null, timestamp: number } | null = null
-const CACHE_DURATION = 30 * 60 * 1000 // 30分
+const CACHE_DURATION = 1 * 60 * 1000 // 1分（ISRと同期）
 
 export async function getCachedInstagramData() {
   const now = Date.now()

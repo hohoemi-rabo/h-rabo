@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   },
 }
 
+// ISR（Incremental Static Regeneration）を有効にする
+// 60秒ごとに再生成（1分）
+export const revalidate = 60
+
 // Instagram APIからデータを取得
 async function getInstagramData() {
   try {
