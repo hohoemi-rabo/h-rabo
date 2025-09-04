@@ -23,11 +23,13 @@ async function getInstagramData() {
     const data = await getCachedInstagramData()
     
     return {
-      media: data.media.map(post => ({
+      media: data.media.map((post) => ({
         id: post.id,
         imageUrl: post.media_url,
         caption: post.caption || '',
-        likes: Math.floor(Math.random() * 50) + 10,
+        // Graph APIの場合は実際のいいね数、Basic APIの場合はデフォルト値
+        likes: post.like_count || 0,
+        comments: post.comments_count || 0,
         createdAt: post.timestamp,
         permalink: post.permalink,
         mediaType: post.media_type

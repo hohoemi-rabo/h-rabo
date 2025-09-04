@@ -8,6 +8,7 @@ interface InstagramPost {
   imageUrl: string
   caption: string
   likes: number
+  comments?: number
   createdAt: string
   mediaType?: 'IMAGE' | 'VIDEO' | 'CAROUSEL_ALBUM'
   permalink?: string
@@ -179,7 +180,13 @@ export default function InstagramPageClient({ posts, accountInfo }: InstagramPag
                     {/* Likes */}
                     <div className="flex items-center gap-2 mb-3">
                       <Heart className="w-5 h-5 text-red-400" />
-                      <span className="text-white font-semibold">{post.likes} いいね</span>
+                      <span className="text-white font-semibold">
+                        {post.likes > 0 ? (
+                          <>{post.likes} いいね</>
+                        ) : (
+                          <>♥ 投稿を見る</>
+                        )}
+                      </span>
                     </div>
 
                     {/* Caption */}
