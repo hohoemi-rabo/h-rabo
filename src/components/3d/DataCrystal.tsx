@@ -20,6 +20,7 @@ export default function DataCrystal({
 }: DataCrystalProps) {
   const meshRef = useRef<THREE.Mesh>(null)
   const innerRef = useRef<THREE.Mesh>(null)
+  const particlesRef = useRef<THREE.Points>(null)
   
   // 内部の光のパーティクル
   const particlePositions = useMemo(() => {
@@ -33,16 +34,49 @@ export default function DataCrystal({
   }, [])
 
   useFrame(({ clock }) => {
+    const time = clock.elapsedTime
+    
     if (meshRef.current) {
       // ゆっくりとした回転
-      meshRef.current.rotation.y = clock.elapsedTime * 0.2
-      meshRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.1) * 0.1
+      meshRef.current.rotation.y = time * 0.2
+      meshRef.current.rotation.x = Math.sin(time * 0.1) * 0.1
+      
+      // カラーシフト - HSLで虹色に変化
+      const hue = (time * 30) % 360  // 30度/秒で色相が変化
+      const color = new THREE.Color(`hsl(${hue}, 100%, 50%)`)
+      
+      // メインメッシュのマテリアルの色を更新
+      const material = meshRef.current.material as any
+      if (material.color) {
+        material.color = color
+      }
     }
     
     if (innerRef.current) {
       // 内部構造の逆回転
-      innerRef.current.rotation.y = -clock.elapsedTime * 0.3
-      innerRef.current.rotation.z = clock.elapsedTime * 0.15
+      innerRef.current.rotation.y = -time * 0.3
+      innerRef.current.rotation.z = time * 0.15
+      
+      // 内部構造も補色でカラーシフト
+      const hue = ((time * 30) + 180) % 360  // メインと180度ずれた補色
+      const color = new THREE.Color(`hsl(${hue}, 100%, 50%)`)
+      
+      const material = innerRef.current.material as THREE.MeshStandardMaterial
+      if (material.color) {
+        material.color = color
+        material.emissive = color
+      }
+    }
+    
+    // パーティクルもカラーシフト
+    if (particlesRef.current) {
+      const hue = ((time * 30) + 90) % 360  // メインと90度ずれた色
+      const color = new THREE.Color(`hsl(${hue}, 100%, 70%)`)
+      
+      const material = particlesRef.current.material as THREE.PointsMaterial
+      if (material.color) {
+        material.color = color
+      }
     }
   })
 
@@ -84,7 +118,7 @@ export default function DataCrystal({
         </mesh>
 
         {/* 内部パーティクル */}
-        <points>
+        <points ref={particlesRef}>
           <bufferGeometry>
             <bufferAttribute
               attach="attributes-position"

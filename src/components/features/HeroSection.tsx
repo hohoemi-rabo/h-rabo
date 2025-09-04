@@ -18,8 +18,28 @@ export default function HeroSection() {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* 背景グラデーション */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900" />
+      {/* 多層グラデーション背景 */}
+      <div className="absolute inset-0">
+        {/* ベースグラデーション */}
+        <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900" />
+        
+        {/* 追加グラデーション層1 - 放射状 */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-dark-800/50 to-dark-900 opacity-70" />
+        
+        {/* 追加グラデーション層2 - 上下 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-transparent to-dark-900 opacity-60" />
+        
+        {/* 追加グラデーション層3 - アクセント */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/5 via-transparent to-neon-purple/5 opacity-30" />
+        
+        {/* ノイズテクスチャ効果 */}
+        <div className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='60' height='60' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat',
+          }}
+        />
+      </div>
 
 
 

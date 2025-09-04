@@ -1,12 +1,61 @@
 'use client'
 
+import { useRef } from 'react'
+import { useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
+import * as THREE from 'three'
 import Scene from './Scene'
 import DataCrystal from './DataCrystal'
 import { use3DPerformance } from '@/hooks/use3DPerformance'
 
 interface HeroObjectProps {
   className?: string
+}
+
+// カラーシフトする光源コンポーネント
+function AnimatedLights() {
+  const light1Ref = useRef<THREE.PointLight>(null)
+  const light2Ref = useRef<THREE.PointLight>(null)
+  
+  useFrame(({ clock }) => {
+    const time = clock.elapsedTime
+    
+    // 光源1のカラーシフト
+    if (light1Ref.current) {
+      const hue = ((time * 40) + 120) % 360
+      light1Ref.current.color = new THREE.Color(`hsl(${hue}, 100%, 50%)`)
+    }
+    
+    // 光源2のカラーシフト
+    if (light2Ref.current) {
+      const hue = ((time * 40) + 240) % 360
+      light2Ref.current.color = new THREE.Color(`hsl(${hue}, 100%, 50%)`)
+    }
+  })
+  
+  return (
+    <>
+      <ambientLight intensity={0.6} />
+      <directionalLight 
+        position={[5, 5, 5]} 
+        intensity={0.8} 
+        color="#ffffff"
+        castShadow
+      />
+      <pointLight 
+        ref={light1Ref}
+        position={[-5, 5, -5]} 
+        intensity={0.6} 
+        color="#00d4ff" 
+      />
+      <pointLight 
+        ref={light2Ref}
+        position={[0, -5, 0]} 
+        intensity={0.4} 
+        color="#8b5cf6" 
+      />
+    </>
+  )
 }
 
 /**
@@ -39,24 +88,8 @@ export default function HeroObject({
           maxPolarAngle={Math.PI / 1.5}
         />
 
-        {/* ライティング - ソフトで美しい照明 */}
-        <ambientLight intensity={0.6} />
-        <directionalLight 
-          position={[5, 5, 5]} 
-          intensity={0.8} 
-          color="#ffffff"
-          castShadow
-        />
-        <pointLight 
-          position={[-5, 5, -5]} 
-          intensity={0.4} 
-          color="#00d4ff" 
-        />
-        <pointLight 
-          position={[0, -5, 0]} 
-          intensity={0.2} 
-          color="#8b5cf6" 
-        />
+        {/* カラーシフトするライティング */}
+        <AnimatedLights />
 
         {/* メインオブジェクト - 中央に配置 */}
         <DataCrystal 
