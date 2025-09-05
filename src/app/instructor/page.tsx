@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import InstructorPageClient from './InstructorPageClient'
+import Dynamic3DRotation from '@/components/animations/Dynamic3DRotation'
+// 元に戻す用: import SimplePageTransition from '@/components/animations/SimplePageTransition'
 
 export const metadata: Metadata = {
   title: '講師紹介',
@@ -7,5 +9,14 @@ export const metadata: Metadata = {
 }
 
 export default function InstructorPage() {
-  return <InstructorPageClient />
+  return (
+    <Dynamic3DRotation className="border-4 border-red-500">
+      <InstructorPageClient />
+    </Dynamic3DRotation>
+  )
 }
+
+// 元に戻す用のコード:
+// <SimplePageTransition type="fadeDown" className="border-4 border-red-500">
+//   <InstructorPageClient />
+// </SimplePageTransition>
