@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import InstagramPageClient from './InstagramPageClient'
-import InstagramFrameTransition from '@/components/animations/InstagramFrameTransition'
 
 export const metadata: Metadata = {
   title: 'Instagram | パソコン・スマホ ほほ笑みラボ',
