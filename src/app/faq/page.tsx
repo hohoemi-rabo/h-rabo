@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import FaqPageClient from './FaqPageClient'
+import LongDistanceTransition from '@/components/animations/LongDistanceTransition'
 
 export const metadata: Metadata = {
   title: 'よくある質問',
@@ -172,5 +173,9 @@ const faqCategories = [
 ]
 
 export default function FAQ() {
-  return <FaqPageClient faqCategories={faqCategories} />
+  return (
+    <LongDistanceTransition className="border-4 border-gray-400 shadow-[0_0_20px_rgba(156,163,175,0.6),0_0_40px_rgba(156,163,175,0.3)]">
+      <FaqPageClient faqCategories={faqCategories} />
+    </LongDistanceTransition>
+  )
 }

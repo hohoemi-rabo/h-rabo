@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import InstagramPageClient from './InstagramPageClient'
+import LongDistanceTransition from '@/components/animations/LongDistanceTransition'
 
 export const metadata: Metadata = {
   title: 'Instagram | パソコン・スマホ ほほ笑みラボ',
@@ -120,5 +121,9 @@ export default async function InstagramPage() {
     website: 'https://hohoemi-rabo.com'
   }
   
-  return <InstagramPageClient posts={data.media} accountInfo={data.user || defaultAccountInfo} />
+  return (
+    <LongDistanceTransition className="border-4 border-gray-400 shadow-[0_0_20px_rgba(156,163,175,0.6),0_0_40px_rgba(156,163,175,0.3)]">
+      <InstagramPageClient posts={data.media} accountInfo={data.user || defaultAccountInfo} />
+    </LongDistanceTransition>
+  )
 }

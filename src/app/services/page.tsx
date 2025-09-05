@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import ServicesPageClient from './ServicesPageClient'
+import LongDistanceTransition from '@/components/animations/LongDistanceTransition'
 
 export const metadata: Metadata = {
   title: 'サービス詳細',
@@ -45,5 +46,9 @@ const oneTimeServices = [
 ]
 
 export default function ServicesPage() {
-  return <ServicesPageClient courseServices={courseServices} oneTimeServices={oneTimeServices} />
+  return (
+    <LongDistanceTransition className="border-4 border-gray-400 shadow-[0_0_20px_rgba(156,163,175,0.6),0_0_40px_rgba(156,163,175,0.3)]">
+      <ServicesPageClient courseServices={courseServices} oneTimeServices={oneTimeServices} />
+    </LongDistanceTransition>
+  )
 }

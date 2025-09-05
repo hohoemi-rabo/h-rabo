@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import ContactPageClient from './ContactPageClient'
+import LongDistanceTransition from '@/components/animations/LongDistanceTransition'
 
 export const metadata: Metadata = {
   title: 'お問い合わせ',
@@ -71,5 +72,9 @@ const inquiryTypes = [
 ]
 
 export default function Contact() {
-  return <ContactPageClient contactMethods={contactMethods} inquiryTypes={inquiryTypes} />
+  return (
+    <LongDistanceTransition className="border-4 border-gray-400 shadow-[0_0_20px_rgba(156,163,175,0.6),0_0_40px_rgba(156,163,175,0.3)]">
+      <ContactPageClient contactMethods={contactMethods} inquiryTypes={inquiryTypes} />
+    </LongDistanceTransition>
+  )
 }

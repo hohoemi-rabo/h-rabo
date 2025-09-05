@@ -23,27 +23,27 @@ export default function SimplePageTransition({
 }: SimplePageTransitionProps) {
   const pathname = usePathname()
 
-  // アニメーションのバリエーション定義
+  // アニメーションのバリエーション定義（完全統一）
   const variants = {
     fadeUp: {
-      initial: { opacity: 0, y: 20 },
+      initial: { opacity: 0, y: 30 },
       animate: { opacity: 1, y: 0 },
-      exit: { opacity: 0, y: -20 }
+      exit: { opacity: 0, y: -30 }
     },
     fadeDown: {
-      initial: { opacity: 0, y: -20 },
+      initial: { opacity: 0, y: -30 },
       animate: { opacity: 1, y: 0 },
-      exit: { opacity: 0, y: 20 }
+      exit: { opacity: 0, y: 30 }
     },
     fadeLeft: {
-      initial: { opacity: 0, x: 20 },
+      initial: { opacity: 0, x: 30 },
       animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: -20 }
+      exit: { opacity: 0, x: -30 }
     },
     fadeRight: {
-      initial: { opacity: 0, x: -20 },
+      initial: { opacity: 0, x: -30 },
       animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: 20 }
+      exit: { opacity: 0, x: 30 }
     },
     rotate3D: {
       initial: { 
@@ -66,10 +66,10 @@ export default function SimplePageTransition({
 
   const selectedVariant = variants[type]
 
-  // トランジション設定（統一）
+  // トランジション設定（完全統一）
   const transition = {
-    duration: 0.4,
-    ease: 'easeOut' as const
+    duration: 0.5,
+    ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number]
   }
 
   return (
