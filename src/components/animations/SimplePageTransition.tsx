@@ -69,7 +69,7 @@ export default function SimplePageTransition({
   // トランジション設定（統一）
   const transition = {
     duration: 0.4,
-    ease: 'easeOut'
+    ease: 'easeOut' as const
   }
 
   return (
