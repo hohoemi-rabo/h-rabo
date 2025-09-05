@@ -29,7 +29,7 @@ export default function DigitalNoise({
     direction: number
   }>>([])
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
 
   // インテンシティの設定
   const settings = {
