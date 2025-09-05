@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 export interface NavItemProps {
   href: string
@@ -13,6 +14,29 @@ export interface NavItemProps {
 }
 
 export default function NavItem({ href, label, isActive, onClick, className = '' }: NavItemProps) {
+  const router = useRouter()
+  
+  // 講師紹介ページへの3D遷移処理
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href === '/instructor') {
+      e.preventDefault()
+      
+      // 3D遷移エフェクトを開始
+      document.body.style.perspective = '1200px'
+      document.body.style.transformStyle = 'preserve-3d'
+      
+      // ページ遷移を少し遅らせて3D効果を見せる
+      setTimeout(() => {
+        router.push(href)
+      }, 100)
+    }
+    
+    // 元のonClickも実行
+    if (onClick) {
+      onClick()
+    }
+  }
+  
   return (
     <motion.div
       className={`relative ${className}`}
@@ -21,13 +45,14 @@ export default function NavItem({ href, label, isActive, onClick, className = ''
     >
       <Link
         href={href}
-        onClick={onClick}
+        onClick={handleClick}
         className={`
           font-futura relative block font-medium transition-all duration-300 
           ${isActive 
             ? 'text-neon-blue shadow-neon' 
             : 'text-white hover:text-neon-blue'
           }
+          ${href === '/instructor' ? 'cursor-pointer' : ''}
         `.replace(/\s+/g, ' ').trim()}
       >
         {label}

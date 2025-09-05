@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import InstructorPageClient from './InstructorPageClient'
+import PageTransition3D from '@/components/animations/PageTransition3D'
 
 export const metadata: Metadata = {
   title: '講師紹介',
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function InstructorPage() {
-  return <InstructorPageClient />
+  return (
+    <PageTransition3D>
+      <InstructorPageClient />
+    </PageTransition3D>
+  )
 }
