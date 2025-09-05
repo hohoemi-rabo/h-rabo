@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 export interface NavItemProps {
   href: string
@@ -13,6 +14,31 @@ export interface NavItemProps {
 }
 
 export default function NavItem({ href, label, isActive, onClick, className = '' }: NavItemProps) {
+  const router = useRouter()
+  
+  // Instagram遷移処理
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href === '/instagram') {
+      e.preventDefault()
+      
+      // Instagram遷移の準備エフェクト
+      document.body.style.overflow = 'hidden'
+      
+      // ページ遷移を少し遅らせて視覚効果を見せる
+      setTimeout(() => {
+        router.push(href)
+        // 遷移後にスクロールを復元
+        setTimeout(() => {
+          document.body.style.overflow = ''
+        }, 800)
+      }, 150)
+    }
+    
+    // 元のonClickも実行
+    if (onClick) {
+      onClick()
+    }
+  }
   
   return (
     <motion.div
@@ -22,7 +48,7 @@ export default function NavItem({ href, label, isActive, onClick, className = ''
     >
       <Link
         href={href}
-        onClick={onClick}
+        onClick={handleClick}
         className={`
           font-futura relative block font-medium transition-all duration-300 
           ${isActive 

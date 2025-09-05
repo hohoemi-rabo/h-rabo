@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import InstagramPageClient from './InstagramPageClient'
+import InstagramFrameTransition from '@/components/animations/InstagramFrameTransition'
 
 export const metadata: Metadata = {
   title: 'Instagram | パソコン・スマホ ほほ笑みラボ',
@@ -120,5 +121,9 @@ export default async function InstagramPage() {
     website: 'https://hohoemi-rabo.com'
   }
   
-  return <InstagramPageClient posts={data.media} accountInfo={data.user || defaultAccountInfo} />
+  return (
+    <InstagramFrameTransition>
+      <InstagramPageClient posts={data.media} accountInfo={data.user || defaultAccountInfo} />
+    </InstagramFrameTransition>
+  )
 }
