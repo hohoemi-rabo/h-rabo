@@ -87,6 +87,36 @@ export default function DataCrystal({
       floatIntensity={0.5}
     >
       <group position={position} scale={scale}>
+        
+        {/* 動的ライティング */}
+        <ambientLight intensity={0.3} color="#ffffff" />
+        
+        {/* メインのポイントライト - 上から */}
+        <pointLight 
+          position={[2, 3, 2]} 
+          intensity={1.5} 
+          color="#00d4ff"
+          distance={6}
+          decay={2}
+        />
+        
+        {/* セカンダリライト - 横から */}
+        <pointLight 
+          position={[-2, 0, 2]} 
+          intensity={0.8} 
+          color="#ff0080"
+          distance={4}
+          decay={2}
+        />
+        
+        {/* アクセントライト - 下から */}
+        <pointLight 
+          position={[0, -2, 1]} 
+          intensity={0.6} 
+          color="#8b5cf6"
+          distance={3}
+          decay={2}
+        />
         {/* メインクリスタル - 八面体 */}
         <mesh ref={meshRef}>
           <octahedronGeometry args={[1.8, 0]} />

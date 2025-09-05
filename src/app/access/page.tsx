@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import AccessPageClient from './AccessPageClient'
+import LongDistanceTransition from '@/components/animations/LongDistanceTransition'
 
 export const metadata: Metadata = {
   title: 'アクセス・お問い合わせ',
@@ -64,5 +65,9 @@ const contactInfo = [
 ]
 
 export default function AccessPage() {
-  return <AccessPageClient businessHours={businessHours} accessMethods={accessMethods} contactInfo={contactInfo} />
+  return (
+    <LongDistanceTransition className="border-4 border-gray-400 shadow-[0_0_20px_rgba(156,163,175,0.6),0_0_40px_rgba(156,163,175,0.3)]">
+      <AccessPageClient businessHours={businessHours} accessMethods={accessMethods} contactInfo={contactInfo} />
+    </LongDistanceTransition>
+  )
 }
