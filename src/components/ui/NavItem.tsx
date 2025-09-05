@@ -3,7 +3,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
 
 export interface NavItemProps {
   href: string
@@ -14,24 +13,6 @@ export interface NavItemProps {
 }
 
 export default function NavItem({ href, label, isActive, onClick, className = '' }: NavItemProps) {
-  const router = useRouter()
-  
-  // Instagram遷移処理
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (href === '/instagram') {
-      e.preventDefault()
-      
-      // overflow設定を削除して、通常のナビゲーションのみ
-      setTimeout(() => {
-        router.push(href)
-      }, 100)
-    }
-    
-    // 元のonClickも実行
-    if (onClick) {
-      onClick()
-    }
-  }
   
   return (
     <motion.div
@@ -41,7 +22,7 @@ export default function NavItem({ href, label, isActive, onClick, className = ''
     >
       <Link
         href={href}
-        onClick={handleClick}
+        onClick={onClick}
         className={`
           font-futura relative block font-medium transition-all duration-300 
           ${isActive 
