@@ -25,42 +25,27 @@ export default function InstagramFrameTransition({
     setMounted(true)
   }, [])
 
-  // フレーム展開のバリエーション
+  // フレーム展開のバリエーション（シンプルに変更）
   const frameVariants = {
     initial: {
-      scale: 0,
-      borderRadius: '50%',
       opacity: 0,
-      rotate: -5
+      y: 20
     },
     animate: {
-      scale: 1,
-      borderRadius: '12px',
       opacity: 1,
-      rotate: 0
+      y: 0
     },
     exit: {
-      scale: 0.8,
-      borderRadius: '50%',
       opacity: 0,
-      rotate: 5
+      y: -20
     }
   }
 
-  // コンテンツのバリエーション
+  // コンテンツのバリエーション（無効化）
   const contentVariants = {
-    initial: {
-      scale: 1.2,
-      opacity: 0
-    },
-    animate: {
-      scale: 1,
-      opacity: 1
-    },
-    exit: {
-      scale: 0.9,
-      opacity: 0
-    }
+    initial: {},
+    animate: {},
+    exit: {}
   }
 
   // 遷移設定
@@ -88,23 +73,14 @@ export default function InstagramFrameTransition({
           variants={frameVariants}
           transition={transition}
         >
-          {/* インスタグラム風フレーム効果 */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-pink-500 via-purple-500 to-yellow-500 p-1 rounded-xl">
-            {/* 内側の白いフレーム */}
-            <div className="bg-white p-2 rounded-lg">
-              {/* コンテンツエリア */}
-              <motion.div
-                className="relative bg-dark-900 rounded-lg overflow-hidden"
-                variants={contentVariants}
-                transition={{ ...transition, delay: 0.1 }}
-              >
-                {children}
-              </motion.div>
-            </div>
-          </div>
-
-          {/* 背景デコレーション */}
-          <div className="absolute -inset-4 opacity-30 blur-xl bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-500 -z-10 rounded-3xl" />
+          {/* コンテンツエリア（枠なし） */}
+          <motion.div
+            className="relative overflow-hidden"
+            variants={contentVariants}
+            transition={{ ...transition, delay: 0.1 }}
+          >
+            {children}
+          </motion.div>
           
           {/* パーティクル効果 */}
           {mounted && (

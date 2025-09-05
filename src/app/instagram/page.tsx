@@ -121,9 +121,5 @@ export default async function InstagramPage() {
     website: 'https://hohoemi-rabo.com'
   }
   
-  return (
-    <InstagramFrameTransition>
-      <InstagramPageClient posts={data.media} accountInfo={data.user || defaultAccountInfo} />
-    </InstagramFrameTransition>
-  )
+  return <InstagramPageClient posts={data.media} accountInfo={data.user || defaultAccountInfo} />
 }

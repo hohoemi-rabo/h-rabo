@@ -21,17 +21,10 @@ export default function NavItem({ href, label, isActive, onClick, className = ''
     if (href === '/instagram') {
       e.preventDefault()
       
-      // Instagram遷移の準備エフェクト
-      document.body.style.overflow = 'hidden'
-      
-      // ページ遷移を少し遅らせて視覚効果を見せる
+      // overflow設定を削除して、通常のナビゲーションのみ
       setTimeout(() => {
         router.push(href)
-        // 遷移後にスクロールを復元
-        setTimeout(() => {
-          document.body.style.overflow = ''
-        }, 800)
-      }, 150)
+      }, 100)
     }
     
     // 元のonClickも実行
