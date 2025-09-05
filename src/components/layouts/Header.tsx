@@ -28,9 +28,22 @@ export default function Header() {
       setIsScrolled(window.scrollY > 50)
     }
 
+    // 初期状態を設定
+    handleScroll()
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // ページ遷移時にスクロール状態を再チェック
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    
+    // ページ遷移後にスクロール位置を確認
+    handleScroll()
+  }, [pathname])
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
@@ -39,11 +52,12 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className={`fixed top-0 z-50 w-full transition-all duration-300 animate-slide-down ${
+        className={`fixed top-0 left-0 right-0 z-[9999] w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-dark-900/95 border-b border-neon-blue/30 backdrop-blur-md shadow-cyber'
-            : 'bg-transparent'
+            ? 'bg-dark-900/70 border-b border-neon-blue/20 backdrop-blur-md shadow-cyber'
+            : 'bg-dark-900/50 backdrop-blur-sm'
         }`}
+        style={{ position: 'fixed' }}
       >
         {/* サイバーグリッド背景 */}
         <div className="cyber-grid absolute inset-0 opacity-20 pointer-events-none" />
