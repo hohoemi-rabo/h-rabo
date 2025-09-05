@@ -47,8 +47,8 @@ export default function PageTransition3D({
   }
 
   const pageTransition = {
-    type: 'tween',
-    ease: [0.25, 0.46, 0.45, 0.94], // cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    type: 'tween' as const,
+    ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
     duration: 0.8
   }
 
