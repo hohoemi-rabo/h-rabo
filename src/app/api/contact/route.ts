@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { Resend } from 'resend'
 import { checkRateLimit } from '@/lib/ratelimit'
-import { saveContactSubmission } from '@/lib/database'
 
 // Resendインスタンスを遅延初期化
 let resend: Resend | null = null
@@ -133,17 +132,6 @@ export async function POST(request: NextRequest) {
           </div>
         </div>
       `,
-    })
-
-    // データベースに保存
-    await saveContactSubmission({
-      name: sanitizedData.name,
-      furigana: sanitizedData.furigana,
-      email: sanitizedData.email,
-      phone: sanitizedData.phone,
-      inquiryType: sanitizedData.inquiryType,
-      message: sanitizedData.message,
-      ip: ip !== 'anonymous' ? ip : undefined,
     })
 
     console.log('Contact form submission successful:', {
