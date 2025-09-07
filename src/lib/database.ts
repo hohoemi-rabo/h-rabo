@@ -9,7 +9,6 @@ interface ContactSubmission {
   email: string
   phone: string
   inquiryType: string
-  subject: string
   message: string
   createdAt: string
   ip?: string
@@ -24,7 +23,6 @@ export async function saveContactSubmission(data: {
   email: string
   phone: string
   inquiryType: string
-  subject: string
   message: string
   ip?: string
 }) {
