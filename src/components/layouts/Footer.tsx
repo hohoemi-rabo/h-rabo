@@ -163,7 +163,7 @@ export default function Footer() {
               <div className="space-y-3">
                 <FooterLink 
                   text="講師ポートフォリオ" 
-                  href="https://example-portfolio.com" 
+                  href="https://masa-olive.vercel.app/" 
                   external 
                 />
                 <div className="bg-dark-700/30 rounded-lg p-3 border border-dark-600">

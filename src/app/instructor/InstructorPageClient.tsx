@@ -70,7 +70,7 @@ export default function InstructorPageClient() {
                 className="space-y-6"
               >
                 <h2 className="text-3xl font-cyber font-bold text-white">
-                  田中 太郎
+                  加藤 昌幸
                 </h2>
                 <p className="text-neon-green text-lg font-semibold">
                   代表講師・IT専門家
@@ -127,6 +127,35 @@ export default function InstructorPageClient() {
                   </motion.div>
                 ))}
               </div>
+              
+              {/* 技術的な依頼ボタン - 特別スタイル */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7, duration: 0.6 }}
+                className="flex justify-center mt-12"
+              >
+                <Link href="https://masa-olive.vercel.app/" target="_blank" rel="noopener noreferrer">
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.05,
+                      boxShadow: '0 0 30px rgba(0, 212, 255, 0.5)'
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    className="relative group"
+                  >
+                    <div className="absolute -inset-1 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                    <div className="relative px-8 py-4 bg-dark-800 border border-neon-blue/50 rounded-lg font-cyber text-lg font-bold text-white hover:bg-dark-700 transition-all duration-300">
+                      <div className="flex items-center gap-3">
+                        <span className="text-neon-green">⚡</span>
+                        <span>技術的な依頼はこちら</span>
+                        <span className="text-neon-pink">→</span>
+                      </div>
+                      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-pink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </motion.div>
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
 
@@ -134,8 +163,8 @@ export default function InstructorPageClient() {
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="flex justify-center gap-6 mt-12"
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-12"
           >
             <Link href="/">
               <Button variant="secondary" size="lg">
