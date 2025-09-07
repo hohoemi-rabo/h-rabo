@@ -120,7 +120,7 @@ export default function HeroSection() {
           </div>
 
           {/* 右側：3Dオブジェクト */}
-          <div className="relative h-[400px] lg:h-[600px] hidden lg:block">
+          <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] block">
             <Suspense fallback={<div className="w-full h-full flex items-center justify-center">
               <div className="w-8 h-8 border-2 border-neon-blue border-t-transparent rounded-full animate-spin" />
             </div>}>

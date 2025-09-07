@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useDeviceDetection } from './useDeviceDetection'
 
 export interface Performance3DSettings {
-  quality: 'high' | 'medium' | 'low'
+  quality: 'high' | 'medium' | 'low' | 'disabled'
   particleCount: number
   objectCount: number
   shadowsEnabled: boolean
@@ -37,9 +37,9 @@ export function use3DPerformance(): Performance3DSettings {
       const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
 
       if (!gl) {
-        // WebGL非対応
+        // WebGL非対応の場合は完全無効化
         setSettings({
-          quality: 'low',
+          quality: 'disabled',
           particleCount: 0,
           objectCount: 0,
           shadowsEnabled: false,

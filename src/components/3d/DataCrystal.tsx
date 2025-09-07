@@ -41,9 +41,9 @@ export default function DataCrystal({
       meshRef.current.rotation.y = time * 0.2
       meshRef.current.rotation.x = Math.sin(time * 0.1) * 0.1
       
-      // カラーシフト - HSLで虹色に変化
+      // カラーシフト - より明るくはっきりした色
       const hue = (time * 30) % 360  // 30度/秒で色相が変化
-      const color = new THREE.Color(`hsl(${hue}, 100%, 50%)`)
+      const color = new THREE.Color(`hsl(${hue}, 100%, 70%)`)
       
       // メインメッシュのマテリアルの色を更新
       const material = meshRef.current.material as any
@@ -57,9 +57,9 @@ export default function DataCrystal({
       innerRef.current.rotation.y = -time * 0.3
       innerRef.current.rotation.z = time * 0.15
       
-      // 内部構造も補色でカラーシフト
+      // 内部構造も補色でカラーシフト（より明るく）
       const hue = ((time * 30) + 180) % 360  // メインと180度ずれた補色
-      const color = new THREE.Color(`hsl(${hue}, 100%, 50%)`)
+      const color = new THREE.Color(`hsl(${hue}, 100%, 75%)`)
       
       const material = innerRef.current.material as THREE.MeshStandardMaterial
       if (material.color) {
@@ -68,10 +68,10 @@ export default function DataCrystal({
       }
     }
     
-    // パーティクルもカラーシフト
+    // パーティクルもカラーシフト（より鮮やか）
     if (particlesRef.current) {
       const hue = ((time * 30) + 90) % 360  // メインと90度ずれた色
-      const color = new THREE.Color(`hsl(${hue}, 100%, 70%)`)
+      const color = new THREE.Color(`hsl(${hue}, 100%, 80%)`)
       
       const material = particlesRef.current.material as THREE.PointsMaterial
       if (material.color) {

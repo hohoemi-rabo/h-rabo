@@ -5,7 +5,7 @@ import { useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Scene from './Scene'
-import DataCrystal from './DataCrystal'
+import MetallicCube from './MetallicCube'
 import { use3DPerformance } from '@/hooks/use3DPerformance'
 
 interface HeroObjectProps {
@@ -67,8 +67,9 @@ export default function HeroObject({
 }: HeroObjectProps) {
   const { quality } = use3DPerformance()
 
-  // 低品質モードでは3Dを表示しない
-  if (quality === 'low') {
+  // WebGL非対応の場合のみ3Dを非表示
+  // モバイルでも軽量版を表示する
+  if (quality === 'disabled') {
     return null
   }
 
@@ -91,10 +92,10 @@ export default function HeroObject({
         {/* カラーシフトするライティング */}
         <AnimatedLights />
 
-        {/* メインオブジェクト - 中央に配置 */}
-        <DataCrystal 
+        {/* メインオブジェクト - メタリックキューブ */}
+        <MetallicCube 
           position={[0, 0, 0]}
-          scale={1.5}
+          scale={1.8}
         />
 
         {/* 薄いフォグで奥行き感を演出 */}
