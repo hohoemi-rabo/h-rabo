@@ -30,11 +30,7 @@ export default function MetallicCube({
           cubes.push({
             position: [x * 0.6, y * 0.6, z * 0.6] as [number, number, number],
             id: `${x}-${y}-${z}`,
-            initialRotation: [
-              Math.random() * Math.PI, 
-              Math.random() * Math.PI, 
-              Math.random() * Math.PI
-            ] as [number, number, number],
+            initialRotation: [0, 0, 0] as [number, number, number],
             // 各軸の回転速度をランダム化
             rotationSpeed: {
               x: (Math.random() - 0.5) * 1.2, // 元の速度に戻す
@@ -55,23 +51,15 @@ export default function MetallicCube({
     const time = clock.elapsedTime
     
     if (groupRef.current) {
-      // 全体の360度回転
-      groupRef.current.rotation.y = time * 0.5 // Y軸周りに完全回転
-      groupRef.current.rotation.x = time * 0.3 // X軸周りに完全回転
-      groupRef.current.rotation.z = time * 0.2 // Z軸周りに完全回転
+      // ランダムな回転 - 複数軸で異なる速度
+      groupRef.current.rotation.x = time * 0.3 // X軸周りに回転
+      groupRef.current.rotation.y = time * 0.5 // Y軸周りに回転
+      groupRef.current.rotation.z = time * 0.2 // Z軸周りに回転
     }
     
-    // 各キューブのランダム個別回転
+    // 色変化のみ保持
     cubesRef.current.forEach((cube, index) => {
       if (cube && cubeData[index]) {
-        const cubeInfo = cubeData[index]
-        const timeWithPhase = time + cubeInfo.phaseOffset
-        
-        // ランダム回転速度を適用
-        cube.rotation.x = cubeInfo.initialRotation[0] + timeWithPhase * cubeInfo.rotationSpeed.x
-        cube.rotation.y = cubeInfo.initialRotation[1] + timeWithPhase * cubeInfo.rotationSpeed.y
-        cube.rotation.z = cubeInfo.initialRotation[2] + timeWithPhase * cubeInfo.rotationSpeed.z
-        
         // カラーシフト - メタリック感を保ちながら色変化
         const hue = (time * 20 + index * 13.7) % 360
         const material = cube.material as THREE.MeshStandardMaterial
@@ -117,7 +105,7 @@ export default function MetallicCube({
             }}
             position={cubeInfo.position}
             rotation={cubeInfo.initialRotation}
-            args={[0.45, 0.45, 0.45]} // width, height, depth
+            args={[0.58, 0.58, 0.58]} // width, height, depth
             radius={0.05} // 角の丸み
             smoothness={4} // 滑らかさ
           >
