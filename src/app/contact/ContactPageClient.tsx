@@ -20,11 +20,10 @@ const contactSchema = z.object({
     .min(1, 'メールアドレスを入力してください')
     .email('正しいメールアドレスを入力してください'),
   inquiryType: z.string().min(1, 'お問い合わせ種別を選択してください'),
-  subject: z.string().min(1, '件名を入力してください'),
   message: z.string().min(10, 'お問い合わせ内容は10文字以上で入力してください'),
-  privacy: z.boolean().refine((val) => val === true, {
-    message: 'プライバシーポリシーに同意してください',
-  }),
+  // privacy: z.boolean().refine((val) => val === true, {
+  //   message: 'プライバシーポリシーに同意してください',
+  // }),
 })
 
 type ContactFormData = z.infer<typeof contactSchema>
@@ -176,30 +175,6 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
             </h2>
             
             <div className="max-w-4xl mx-auto">
-              {/* 成功メッセージ */}
-              {submitStatus === 'success' && (
-                <div className="mb-6 bg-green-500/10 border border-green-500 rounded-xl p-6 text-center">
-                  <p className="text-green-400 text-lg font-semibold">
-                    ✅ お問い合わせを送信しました！
-                  </p>
-                  <p className="text-gray-300 mt-2">
-                    24時間以内にご連絡いたします。お待ちください。
-                  </p>
-                </div>
-              )}
-
-              {/* エラーメッセージ */}
-              {submitStatus === 'error' && (
-                <div className="mb-6 bg-red-500/10 border border-red-500 rounded-xl p-6 text-center">
-                  <p className="text-red-400 text-lg font-semibold">
-                    ❌ 送信に失敗しました
-                  </p>
-                  <p className="text-gray-300 mt-2">
-                    しばらくしてから再度お試しください。
-                  </p>
-                </div>
-              )}
-
               <div className="bg-dark-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   {/* お名前 */}
@@ -278,7 +253,6 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
                       <option value="lesson">レッスンについて</option>
                       <option value="technical">技術的なご相談</option>
                       <option value="visit">出張サービス</option>
-                      <option value="trial">体験レッスン申し込み</option>
                       <option value="other">その他</option>
                     </select>
                     {errors.inquiryType && (
@@ -286,21 +260,6 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
                     )}
                   </div>
 
-                  {/* 件名 */}
-                  <div>
-                    <label className="block text-white font-semibold mb-2">
-                      件名 <span className="text-neon-pink">*</span>
-                    </label>
-                    <input
-                      {...register('subject')}
-                      type="text"
-                      className="w-full bg-dark-700/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-neon-blue focus:ring-2 focus:ring-neon-blue/20 focus:outline-none transition-all duration-300"
-                      placeholder="お問い合わせ内容の件名をご入力ください"
-                    />
-                    {errors.subject && (
-                      <p className="mt-1 text-sm text-red-400">{errors.subject.message}</p>
-                    )}
-                  </div>
 
                   {/* お問い合わせ内容 */}
                   <div>
@@ -318,8 +277,8 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
                     )}
                   </div>
 
-                  {/* プライバシーポリシー同意 */}
-                  <div className="flex items-start space-x-3">
+                  {/* プライバシーポリシー同意 - 一時的にコメントアウト */}
+                  {/* <div className="flex items-start space-x-3">
                     <input
                       {...register('privacy')}
                       type="checkbox"
@@ -335,7 +294,7 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
                   </div>
                   {errors.privacy && (
                     <p className="mt-1 text-sm text-red-400">{errors.privacy.message}</p>
-                  )}
+                  )} */}
 
                   {/* 送信ボタン */}
                   <div className="text-center pt-4">
@@ -358,6 +317,29 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
                   </div>
                 </form>
               </div>
+              
+              {/* 送信結果メッセージ */}
+              {submitStatus === 'success' && (
+                <div className="mt-6 bg-green-500/10 border border-green-500 rounded-xl p-6 text-center">
+                  <p className="text-green-400 text-lg font-semibold">
+                    ✅ お問い合わせを送信しました！
+                  </p>
+                  <p className="text-gray-300 mt-2">
+                    24時間以内にご連絡いたします。お待ちください。
+                  </p>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="mt-6 bg-red-500/10 border border-red-500 rounded-xl p-6 text-center">
+                  <p className="text-red-400 text-lg font-semibold">
+                    ❌ 送信に失敗しました
+                  </p>
+                  <p className="text-gray-300 mt-2">
+                    しばらくしてから再度お試しください。
+                  </p>
+                </div>
+              )}
               
               {/* 注意事項 */}
               <div className="mt-8 bg-neon-blue/10 border border-neon-blue/30 rounded-xl p-6">

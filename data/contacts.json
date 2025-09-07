@@ -1,5 +1,29 @@
 [
   {
+    "name": "加藤あかり",
+    "furigana": "カトウアカリ",
+    "email": "m.9rumaya@gmail.com",
+    "phone": "09018682804",
+    "inquiryType": "その他",
+    "message": "てすとてすとてすとてすとてすとてすとてすとてすと\n",
+    "ip": "::1",
+    "id": "mf99u7vst0ckor9bl5b",
+    "createdAt": "2025-09-07T05:47:47.176Z",
+    "status": "new"
+  },
+  {
+    "name": "加藤昌幸",
+    "furigana": "カトウマサユキ",
+    "email": "m.9rumaya@gmail.com",
+    "phone": "09018682804",
+    "inquiryType": "technical",
+    "message": "テストテストテストテストテストテストテスト",
+    "ip": "::1",
+    "id": "mf99pa2tfv3otvrysil",
+    "createdAt": "2025-09-07T05:43:56.741Z",
+    "status": "new"
+  },
+  {
     "name": "正しいメールテスト",
     "furigana": "",
     "email": "test@example.com",

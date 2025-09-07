@@ -20,9 +20,7 @@ const contactSchema = z.object({
   phone: z.string().min(1).regex(/^[0-9-+\s()]*$/),
   email: z.string().email(),
   inquiryType: z.string().min(1),
-  subject: z.string().min(1).max(100),
   message: z.string().min(10).max(1000),
-  privacy: z.boolean().refine((val) => val === true),
 })
 
 export async function POST(request: NextRequest) {
@@ -45,12 +43,20 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const validatedData = contactSchema.parse(body)
 
+    // お問い合わせ種別を日本語に変換
+    const inquiryTypeMap: Record<string, string> = {
+      lesson: 'レッスンについて',
+      technical: '技術的なご相談',
+      visit: '出張サービス',
+      other: 'その他'
+    }
+
     const sanitizedData = {
       ...validatedData,
       name: escapeHtml(validatedData.name),
       furigana: validatedData.furigana ? escapeHtml(validatedData.furigana) : '',
-      subject: escapeHtml(validatedData.subject),
       message: escapeHtml(validatedData.message),
+      inquiryType: inquiryTypeMap[validatedData.inquiryType] || validatedData.inquiryType,
     }
 
     // メール送信
@@ -65,7 +71,6 @@ export async function POST(request: NextRequest) {
       <p><strong>メールアドレス:</strong> ${sanitizedData.email}</p>
       <p><strong>電話番号:</strong> ${sanitizedData.phone}</p>
       <p><strong>お問い合わせ種別:</strong> ${sanitizedData.inquiryType}</p>
-      <p><strong>件名:</strong> ${sanitizedData.subject}</p>
       <p><strong>お問い合わせ内容:</strong></p>
       <p style="white-space: pre-wrap; background-color: #f5f5f5; padding: 10px; border-left: 4px solid #007bff;">${sanitizedData.message}</p>
       <hr>
@@ -91,7 +96,7 @@ export async function POST(request: NextRequest) {
     await resendClient.emails.send({
       from: process.env.CONTACT_EMAIL_FROM || 'noreply@hohoemi-lab.com',
       to: [process.env.CONTACT_EMAIL_TO || 'info@hohoemi-lab.com'],
-      subject: `[ホームページお問い合わせ] ${sanitizedData.subject}`,
+      subject: `[ホームページお問い合わせ] ${sanitizedData.inquiryType} - ${sanitizedData.name}様より`,
       html: emailHtml,
       replyTo: sanitizedData.email,
     })
@@ -111,7 +116,6 @@ export async function POST(request: NextRequest) {
           
           <p>以下の内容で承りました：</p>
           <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0;">
-            <p><strong>件名:</strong> ${sanitizedData.subject}</p>
             <p><strong>お問い合わせ種別:</strong> ${sanitizedData.inquiryType}</p>
             <p><strong>お問い合わせ内容:</strong></p>
             <p style="white-space: pre-wrap;">${sanitizedData.message}</p>
@@ -138,7 +142,6 @@ export async function POST(request: NextRequest) {
       email: sanitizedData.email,
       phone: sanitizedData.phone,
       inquiryType: sanitizedData.inquiryType,
-      subject: sanitizedData.subject,
       message: sanitizedData.message,
       ip: ip !== 'anonymous' ? ip : undefined,
     })
@@ -147,7 +150,6 @@ export async function POST(request: NextRequest) {
       name: sanitizedData.name,
       email: sanitizedData.email,
       inquiryType: sanitizedData.inquiryType,
-      subject: sanitizedData.subject,
       timestamp: new Date().toISOString(),
     })
 
