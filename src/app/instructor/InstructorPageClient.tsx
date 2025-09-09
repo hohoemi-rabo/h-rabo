@@ -5,19 +5,26 @@ import { Button } from '@/components/ui'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import SwipeWrapper from '@/components/layouts/SwipeWrapper'
 
 export default function InstructorPageClient() {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ 
-        duration: 0.5, 
-        ease: 'easeOut' 
-      }}
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+    <SwipeWrapper 
+      prevPage="/" 
+      nextPage="/services"
+      currentPageIndex={1}
+      totalPages={7}
     >
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ 
+          duration: 0.5, 
+          ease: 'easeOut' 
+        }}
+        className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+      >
       <Container size="lg">
         <div className="py-20">
           {/* ヘッダー */}
@@ -180,5 +187,6 @@ export default function InstructorPageClient() {
         </div>
       </Container>
     </motion.div>
+    </SwipeWrapper>
   )
 }

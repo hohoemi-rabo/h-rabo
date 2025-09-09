@@ -4,6 +4,7 @@ import Container from '@/components/ui/Container'
 import { Button } from '@/components/ui'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import SwipeWrapper from '@/components/layouts/SwipeWrapper'
 
 interface Course {
   title: string
@@ -31,7 +32,13 @@ export default function ServicesPageClient({
   oneTimeServices 
 }: ServicesPageClientProps) {
   return (
-    <motion.div 
+    <SwipeWrapper 
+      prevPage="/instructor" 
+      nextPage="/faq"
+      currentPageIndex={2}
+      totalPages={7}
+    >
+      <motion.div 
       className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
       initial={{ 
         opacity: 0,
@@ -167,5 +174,6 @@ export default function ServicesPageClient({
         </div>
       </Container>
     </motion.div>
+    </SwipeWrapper>
   )
 }

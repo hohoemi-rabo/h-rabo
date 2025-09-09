@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'framer-motion'
 import * as z from 'zod'
+import SwipeWrapper from '@/components/layouts/SwipeWrapper'
 
 // バリデーションスキーマ
 const contactSchema = z.object({
@@ -97,7 +98,13 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
   }
 
   return (
-    <motion.div 
+    <SwipeWrapper 
+      prevPage="/access" 
+      nextPage={null}
+      currentPageIndex={6}
+      totalPages={7}
+    >
+      <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
@@ -385,9 +392,9 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
 
           {/* ナビゲーション */}
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/faq">
+            <Link href="/access">
               <Button variant="secondary" size="lg">
-                ❓ よくある質問
+                ← アクセス
               </Button>
             </Link>
             <Link href="/">
@@ -399,5 +406,6 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
         </div>
       </Container>
     </motion.div>
+    </SwipeWrapper>
   )
 }

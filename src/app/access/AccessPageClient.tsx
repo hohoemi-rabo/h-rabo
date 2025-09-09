@@ -4,6 +4,7 @@ import Container from '@/components/ui/Container'
 import { Button } from '@/components/ui'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import SwipeWrapper from '@/components/layouts/SwipeWrapper'
 
 interface BusinessHour {
   day: string
@@ -38,7 +39,13 @@ export default function AccessPageClient({
   contactInfo 
 }: AccessPageClientProps) {
   return (
-    <motion.div 
+    <SwipeWrapper 
+      prevPage="/voice" 
+      nextPage="/contact"
+      currentPageIndex={5}
+      totalPages={7}
+    >
+      <motion.div 
       className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
       initial={{ 
         opacity: 0,
@@ -239,14 +246,15 @@ export default function AccessPageClient({
                 ← お客様の声
               </Button>
             </Link>
-            <Link href="/">
+            <Link href="/contact">
               <Button variant="primary" size="lg">
-                ホームに戻る
+                お問い合わせ →
               </Button>
             </Link>
           </div>
         </div>
       </Container>
     </motion.div>
+    </SwipeWrapper>
   )
 }
