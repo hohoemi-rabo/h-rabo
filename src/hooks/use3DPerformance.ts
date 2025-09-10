@@ -47,6 +47,7 @@ export function use3DPerformance(): Performance3DSettings {
           pixelRatio: 1,
           maxLights: 1
         })
+        canvas.remove() // canvasを破棄
         return
       }
 
@@ -98,6 +99,13 @@ export function use3DPerformance(): Performance3DSettings {
           console.log('WebGL Renderer:', renderer)
         }
       }
+
+      // WebGLコンテキストとcanvasを破棄
+      const loseContext = gl.getExtension('WEBGL_lose_context')
+      if (loseContext) {
+        loseContext.loseContext()
+      }
+      canvas.remove()
     }
 
     checkPerformance()
