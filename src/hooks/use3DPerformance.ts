@@ -101,9 +101,11 @@ export function use3DPerformance(): Performance3DSettings {
       }
 
       // WebGLコンテキストとcanvasを破棄
-      const loseContext = gl.getExtension('WEBGL_lose_context')
-      if (loseContext) {
-        loseContext.loseContext()
+      if (gl instanceof WebGLRenderingContext || gl instanceof WebGL2RenderingContext) {
+        const loseContext = gl.getExtension('WEBGL_lose_context')
+        if (loseContext) {
+          loseContext.loseContext()
+        }
       }
       canvas.remove()
     }
