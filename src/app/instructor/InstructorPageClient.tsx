@@ -171,7 +171,7 @@ export default function InstructorPageClient() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-12"
+            className="flex flex-row justify-center gap-4 mt-12"
           >
             <Link href="/">
               <Button variant="secondary" size="lg">
