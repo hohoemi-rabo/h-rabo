@@ -107,21 +107,9 @@ export default function SwipeWrapper({
         {children}
       </motion.div>
 
-      {/* スワイプインジケーター - Portalでbody直下に固定 */}
+      {/* スワイプインジケーター - Portalでbody直下に配置 */}
       {mounted && isMobile && createPortal(
-        <div 
-          style={{
-            position: 'fixed',
-            bottom: '80px',
-            left: '0',
-            right: '0',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            pointerEvents: 'none',
-            zIndex: 999999
-          }}
-        >
+        <div className="fixed bottom-20 left-0 right-0 flex justify-center items-center pointer-events-none z-[9999]">
           <div className="bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2">
             {prevPage && (
               <span className="text-white/70 text-sm">
