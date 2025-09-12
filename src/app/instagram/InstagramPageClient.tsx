@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Heart, MessageCircle, Share, ExternalLink, Image as ImageIcon, Play, Video } from 'lucide-react'
+import SwipeWrapper from '@/components/layouts/SwipeWrapper'
 
 interface InstagramPost {
   id: string
@@ -31,7 +32,13 @@ interface InstagramPageClientProps {
 
 export default function InstagramPageClient({ posts, accountInfo }: InstagramPageClientProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <SwipeWrapper 
+      prevPage="/services" 
+      nextPage="/faq"
+      currentPageIndex={3}
+      totalPages={8}
+    >
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
@@ -229,5 +236,6 @@ export default function InstagramPageClient({ posts, accountInfo }: InstagramPag
         </motion.div>
       </div>
     </div>
+    </SwipeWrapper>
   )
 }

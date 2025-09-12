@@ -42,8 +42,8 @@ export default function AccessPageClient({
     <SwipeWrapper 
       prevPage="/voice" 
       nextPage="/contact"
-      currentPageIndex={5}
-      totalPages={7}
+      currentPageIndex={6}
+      totalPages={8}
     >
       <motion.div 
       className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"

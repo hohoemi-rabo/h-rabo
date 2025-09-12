@@ -101,8 +101,8 @@ export default function ContactPageClient({ contactMethods, inquiryTypes }: Cont
     <SwipeWrapper 
       prevPage="/access" 
       nextPage={null}
-      currentPageIndex={6}
-      totalPages={7}
+      currentPageIndex={7}
+      totalPages={8}
     >
       <motion.div 
       initial={{ opacity: 0, y: 20 }}

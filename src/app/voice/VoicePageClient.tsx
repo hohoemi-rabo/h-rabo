@@ -35,8 +35,8 @@ export default function VoicePageClient({ testimonials, stats }: VoicePageClient
     <SwipeWrapper 
       prevPage="/faq" 
       nextPage="/access"
-      currentPageIndex={4}
-      totalPages={7}
+      currentPageIndex={5}
+      totalPages={8}
     >
       <motion.div 
       className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"

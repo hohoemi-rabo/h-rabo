@@ -28,10 +28,10 @@ interface FaqPageClientProps {
 export default function FaqPageClient({ faqCategories }: FaqPageClientProps) {
   return (
     <SwipeWrapper 
-      prevPage="/services" 
+      prevPage="/instagram" 
       nextPage="/voice"
-      currentPageIndex={3}
-      totalPages={7}
+      currentPageIndex={4}
+      totalPages={8}
     >
       <motion.div 
       className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"

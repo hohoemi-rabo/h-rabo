@@ -34,7 +34,7 @@ export default function ServicesPageClient({
   return (
     <SwipeWrapper 
       prevPage="/instructor" 
-      nextPage="/faq"
+      nextPage="/instagram"
       currentPageIndex={2}
       totalPages={7}
     >
