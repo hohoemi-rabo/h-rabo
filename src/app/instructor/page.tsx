@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function InstructorPage() {
   return (
-    <LongDistanceTransition className="border-4 border-gray-400 shadow-[0_0_20px_rgba(156,163,175,0.6),0_0_40px_rgba(156,163,175,0.3)]">
+    <LongDistanceTransition>
       <InstructorPageClient />
     </LongDistanceTransition>
   )

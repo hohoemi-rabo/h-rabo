@@ -120,12 +120,12 @@ export default function AccessPageClient({
                 営業時間
               </h2>
               
-              <div className="bg-dark-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="bg-dark-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300">
                 <div className="space-y-4">
                   {businessHours.map((schedule, index) => (
                     <div
                       key={index}
-                      className="flex justify-between items-center py-3 border-b border-white/10 last:border-b-0"
+                      className="flex justify-between items-center py-3 border-b border-white/5 last:border-b-0"
                     >
                       <span className="text-white font-semibold">
                         {schedule.day}
@@ -188,7 +188,7 @@ export default function AccessPageClient({
               所在地
             </h2>
             
-            <div className="bg-dark-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+            <div className="bg-dark-800/50 backdrop-blur-sm rounded-xl p-6">
               <div className="aspect-video rounded-lg overflow-hidden mb-6">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3247.131272669226!2d137.84789097524333!3d35.525753538500076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601c9a2377337c89%3A0xfa0a289de6b8cfcd!2z44CSMzk1LTAwMDIg6ZW36YeO55yM6aOv55Sw5biC5LiK6YO36aOv5rK877yS77yW77yU77yQ!5e0!3m2!1sja!2sjp!4v1756978677684!5m2!1sja!2sjp"
